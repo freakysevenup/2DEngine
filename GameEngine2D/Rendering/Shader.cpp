@@ -7,6 +7,7 @@
 #include <cstring>
 #include <sstream>
 
+#include "..\Core\ErrorLog.h"
 #include "..\Core\Utility.h"
 
 //--------------------------------------------------------------------------------
@@ -36,7 +37,7 @@ ShaderData::ShaderData(const std::string& fileName)
 
 	if (m_program == 0)
 	{
-		fprintf(stderr, "Error creating shader program\n");
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Error creating shader program Line 40 Shader\n");
 		assert(false);
 	}
 
@@ -217,7 +218,7 @@ void ShaderData::addProgram(const std::string& text, int type)
 
 	if (shader == 0)
 	{
-		fprintf(stderr, "Error creating shader type %d\n", type);
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Error creating shader type " + std::to_string(type) + " Line 221 Shader");
 		assert(false);
 	}
 
@@ -236,8 +237,7 @@ void ShaderData::addProgram(const std::string& text, int type)
 		GLchar InfoLog[1024];
 
 		glGetShaderInfoLog(shader, 1024, NULL, InfoLog);
-		fprintf(stderr, "Error compiling shader type %d: '%s'\n", shader, InfoLog);
-
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Error compiling shader type " + std::to_string(shader) + " " + InfoLog);
 		assert(false);
 	}
 
@@ -369,7 +369,7 @@ static void checkShaderError(int shader, int flag, bool isProgram, const std::st
 		else
 			glGetShaderInfoLog(shader, sizeof(error), NULL, error);
 
-		fprintf(stderr, "%s: '%s'\n", errorMessage.c_str(), error);
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, errorMessage.c_str() + std::to_string(shader) + " " + error);
 	}
 }
 
@@ -401,7 +401,7 @@ static std::string loadShader(const std::string& fileName)
 	}
 	else
 	{
-		std::cerr << "Unable to load shader: " << fileName << std::endl;
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Unable to load shader: " + fileName);
 	}
 
 	return output;

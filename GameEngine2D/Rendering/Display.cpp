@@ -1,6 +1,7 @@
 #include "Display.h"
 #include <glew\glew.h>
 #include <assert.h>
+#include "..\Core\ErrorLog.h"
 
 Display::Display(const std::string& name, const int& screenWidth, const int& screenHeight, unsigned int windowFlags) : 
 m_input(this),
@@ -49,13 +50,14 @@ m_screenName(name)
 	GLenum err = glewInit();
 	if (err != GLEW_OK)
 	{
-		fprintf(stderr, "Error: '%s'\n", glewGetErrorString(err));
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, reinterpret_cast<const char*>(glewGetErrorString(err)));
 	}
 
 }
 
 Display::~Display()
 {
+	ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Display destroyed Line 60 Display");
 	SDL_GL_DeleteContext(m_glContext);
 	SDL_DestroyWindow(m_window);
 	SDL_Quit();

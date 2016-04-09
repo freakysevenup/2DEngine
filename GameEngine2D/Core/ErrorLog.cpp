@@ -9,10 +9,6 @@
 //     Copyright (c) Team MegaFox. All rights reserved.
 // </copyright>
 // <summary>
-/*
-This ErrorLog file is used to keep track of errors being created within
-MegaEngine.
-*/
 // </summary>
 // ***********************************************************************
 
@@ -38,14 +34,14 @@ void ErrorLog::close()
 	}
 }
 
-void ErrorLog::log(SeverityLevel severity, std::string message)
+void ErrorLog::log(SeverityLevel severity, const std::string& message)
 {
-	if (severity > MEGA_NONE)
+	if (severity > JADE_NONE)
 	{
 		setSeverity(severity);
 	}
 
-	if (severity >= m_currentSeverity && m_currentSeverity > MEGA_NONE)
+	if (severity >= m_currentSeverity && m_currentSeverity > JADE_NONE)
 	{
 		if (m_outputStream == nullptr)
 		{
@@ -64,7 +60,7 @@ void ErrorLog::log(SeverityLevel severity, std::string message)
 	}
 }
 
-void ErrorLog::setLogFile(std::string & fileName)
+void ErrorLog::setLogFile(const std::string& fileName)
 {
 	close();
 	logWasSetup = false;
@@ -72,31 +68,31 @@ void ErrorLog::setLogFile(std::string & fileName)
 	//Getting an Error here, create a LogFiles directory.
 	m_outputStream = new std::ofstream(path + fileName.c_str());
 	setUpLog(fileName);
-	m_currentSeverity = MEGA_ERROR;
+	m_currentSeverity = JADE_ERROR;
 }
 
-void ErrorLog::error(std::string message)
+void ErrorLog::error(const std::string& message)
 {
-	log(MEGA_ERROR, message);
+	log(JADE_ERROR, message);
 }
 
-void ErrorLog::warning(std::string message)
+void ErrorLog::warning(const std::string& message)
 {
 
-	log(MEGA_WARNING, message);
+	log(JADE_WARNING, message);
 }
 
-void ErrorLog::trace(std::string message)
+void ErrorLog::trace(const std::string& message)
 {
-	log(MEGA_TRACE, message);
+	log(JADE_TRACE, message);
 }
 
-void ErrorLog::info(std::string message)
+void ErrorLog::info(const std::string& message)
 {
-	log(MEGA_INFO, message);
+	log(JADE_INFO, message);
 }
 
-void ErrorLog::setUpLog(std::string fileName)
+void ErrorLog::setUpLog(const std::string& fileName)
 {
 	if (!logWasSetup)
 	{
