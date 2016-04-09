@@ -1,3 +1,11 @@
+#define ToRadians(x) (float)(((x) * 3.1415926536f / 180.0f))
+#define ToDegree(x) (float)(((x) * 180.0f / 3.1415926536f))
+#define ZERO_MEM(a) memset(a,0,sizeof(a))
+#define ARRAY_SIZE(a) (sizeof(a)/sizeof(a[0]))
+#define ARRAY_SIZE_IN_ELEMENTS(a) (sizeof(a)/sizeof(a[0]))
+#define SAFE_DELETE(p) if(p) {delete p; p = NULL;}
+#define INVALID_VALUE 0xFFFFFFFF
+
 #include <vector>
 #include <string>
 #include <glm\glm.hpp>
