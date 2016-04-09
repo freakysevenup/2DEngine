@@ -61,15 +61,6 @@ Display::~Display()
 	SDL_Quit();
 }
 
-void Display::update(GUIEngine* guiEngine)
-{
-	SDL_Event e;
-	if (m_input.Update(e))
-	{
-		m_isClosed = true;
-	}
-}
-
 void Display::clearScreen(float r /* = 0.0f */, float g /* = 0.0f */, float b /* = 1.0f */, float a /* = 1.0f */)
 {
 	glClearColor(r, g, b, a);
