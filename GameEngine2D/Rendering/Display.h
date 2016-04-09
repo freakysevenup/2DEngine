@@ -2,12 +2,10 @@
 #pragma once
 #include <SDL2\SDL.h>
 #include <string>
-#include <PhysX\PxPhysicsAPI.h>
-using namespace physx;
-
 #include "..\Core\InputManager.h"
+#include <glm\glm.hpp>
+using namespace glm;
 
-class GUIEngine;
 
 /// <summary>
 /// An enum for the window to be either invisible, fullscreen and/or borderless.
@@ -39,11 +37,6 @@ public:
 	/// Swaps the buffers.
 	/// </summary>
 	void swapBuffers();
-	/// <summary>
-	/// Updates input from the window.
-	/// </summary>
-	/// <param name="guiEngine">The GUI engine.</param>
-	void update(GUIEngine* guiEngine);
 	
 	/// <summary>
 	/// Determines whether this window is closed.
@@ -69,7 +62,7 @@ public:
 	/// Gets the center position of the window.
 	/// </summary>
 	/// <returns>The center point of the window.</returns>
-	inline const PxVec2 getCenter() const { return PxVec2((float)m_screenWidth / 2.0f, (float)m_screenHeight / 2.0f); }
+	inline const vec2 getCenter() const { return vec2((float)m_screenWidth / 2.0f, (float)m_screenHeight / 2.0f); }
 	/// <summary>
 	/// Gets the name of the screen.
 	/// </summary>

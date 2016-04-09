@@ -1,8 +1,8 @@
 #pragma once
 #include <unordered_map>
 #include <SDL2\SDL.h>
-#include <PhysX/PxPhysicsAPI.h>
-using namespace physx;
+#include <glm\glm.hpp>
+using namespace glm;
 
 class Display;
 ///<summary>
@@ -102,12 +102,12 @@ public:
 	/// Gets the mouse position on screen.
 	/// </summary>
 	/// <returns>The mouse position.</returns>
-	const PxVec2 GetMousePosition() const;
+	const vec2 GetMousePosition() const;
 	/// <summary>
 	/// Sets the mouse position manually.
 	/// </summary>
 	/// <param name='pos'>The position where the mouse cursor should be.</param>
-	void SetMousePosition(const PxVec2& pos) const;
+	void SetMousePosition(const vec2& pos) const;
 	/// <summary>
 	/// Sets the mouse cursor to be visible.
 	/// </summary>
@@ -141,7 +141,7 @@ public:
 	/// Gets the left thumbstick position.
 	/// </summary>
 	/// <returns>The left thumbstick position.</returns>
-	const PxVec2 GetThumbLPosition() const;
+	const vec2 GetThumbLPosition() const;
 	/// <summary>
 	/// Checks if the right gamepad thumbstick moved.
 	/// </summary>
@@ -151,7 +151,7 @@ public:
 	/// Gets the right thumbstick position.
 	/// </summary>
 	/// <returns>The right thumbstick position.</returns>
-	const PxVec2 GetThumbRPosition() const;
+	const vec2 GetThumbRPosition() const;
 	/// <summary>
 	/// Gets the left trigger depth.
 	/// </summary>
@@ -215,7 +215,7 @@ private:
 	/// <summary>
 	/// The mouse position.
 	/// </summary>
-	PxVec2 mousePos;
+	vec2 mousePos;
 	/// <summary>
 	/// Returns true if the mouse has moved.
 	/// </summary>
@@ -240,7 +240,7 @@ private:
 	/// <summary>
 	/// Stores the left thumbstick position.
 	/// </summary>
-	PxVec2 thumbLPos;
+	vec2 thumbLPos;
 	/// <summary>
 	/// Returns true if the right thumbstick has moved.
 	/// </summary>
@@ -248,7 +248,7 @@ private:
 	/// <summary>
 	/// Stores the right thumbstick position.
 	/// </summary>
-	PxVec2 thumbRPos;
+	vec2 thumbRPos;
 	/// <summary>
 	/// Gets the left trigger.
 	/// </summary>

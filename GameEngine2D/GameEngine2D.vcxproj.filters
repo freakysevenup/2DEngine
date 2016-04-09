@@ -27,6 +27,12 @@
     <ClCompile Include="Rendering\Display.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\Shader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Utility.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestGame.h" />
@@ -41,6 +47,15 @@
     </ClInclude>
     <ClInclude Include="Rendering\Display.h">
       <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Reference.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Shader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utility.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
