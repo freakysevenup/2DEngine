@@ -1,7 +1,7 @@
 #include "Display.h"
 #include <glew\glew.h>
 #include <assert.h>
-#include "..\Core\ErrorLog.h"
+#include "ErrorLog.h"
 
 Display::Display(const std::string& name, const int& screenWidth, const int& screenHeight, unsigned int windowFlags) : 
 m_input(this),

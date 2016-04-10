@@ -2,9 +2,9 @@
 #include <iostream>
 #include "picoPNG.h"
 #include <glew\glew.h>
-#include "..\Core\Utility.h"
+#include "Utility.h"
 #include "Texture.h"
-#include "..\Core\ErrorLog.h"
+#include "ErrorLog.h"
 
 TextureResources::~TextureResources()
 {

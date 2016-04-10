@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <ctime>
-#include "..\Core\Time.h"
+#include "Time.h"
 
 class ErrorLog
 {

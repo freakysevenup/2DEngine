@@ -1,5 +1,5 @@
 #include "InputManager.h"
-#include "..\Rendering\Display.h"
+#include "Display.h"
 #include <string>
 #include "ErrorLog.h"
 

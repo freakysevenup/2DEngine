@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-#include "..\Rendering\Display.h"
+#include "Display.h"
 #include "InputManager.h"
 #include "ISceneList.h"
 class IScene;

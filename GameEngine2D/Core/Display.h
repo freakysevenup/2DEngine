@@ -2,7 +2,7 @@
 #pragma once
 #include <SDL2\SDL.h>
 #include <string>
-#include "..\Core\InputManager.h"
+#include "InputManager.h"
 #include <glm\glm.hpp>
 using namespace glm;
 
