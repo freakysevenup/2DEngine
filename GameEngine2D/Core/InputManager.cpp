@@ -9,7 +9,7 @@ InputManager::InputManager(Display* window)
 	controller = SDL_GameControllerOpen(0);
 	if (controller == nullptr)
 	{
-		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "There is no controller connected to the device, Line 12 InputManager");
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "There is no controller connected to the device...");
 	}
 }
 
@@ -51,6 +51,8 @@ bool InputManager::Update(SDL_Event& _inputEvent)
 		switch (_inputEvent.type)
 		{
 		case SDL_QUIT:
+			SDL_Quit();
+			exit(0);
 			return true;
 		case SDL_KEYDOWN:
 			keyDownState = true;

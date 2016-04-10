@@ -11,7 +11,7 @@ public:
 	/// <summary>
 	/// The log file name
 	/// </summary>
-	std::string logFileName = "..//MegaEngine_ErrorLog.txt";
+	std::string logFileName = "..//JADE2D.log";
 	/// <summary>
 	/// The SeverityLevel Enum of the ErrorLog
 	/// </summary>

@@ -11,7 +11,7 @@ m_screenName(name)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
-		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "SDL was not initialized.. Line 14 Display");
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, "SDL was not initialized.. Line 14 Display");
 		assert(0 != 0);
 	}
 
@@ -51,14 +51,13 @@ m_screenName(name)
 	GLenum err = glewInit();
 	if (err != GLEW_OK)
 	{
-		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, reinterpret_cast<const char*>(glewGetErrorString(err)));
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, reinterpret_cast<const char*>(glewGetErrorString(err)));
 	}
 
 }
 
 Display::~Display()
 {
-	ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Display destroyed Line 60 Display");
 	SDL_GL_DeleteContext(m_glContext);
 	SDL_DestroyWindow(m_window);
 	SDL_Quit();

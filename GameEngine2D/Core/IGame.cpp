@@ -45,6 +45,10 @@ void IGame::ExitGame()
 	}
 
 	m_isRunning = false;
+
+	ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_INFO, "Game Exited...");
+	SDL_Quit();
+	exit(0);
 }
 
 bool IGame::Init()
@@ -62,6 +66,7 @@ bool IGame::Init()
 bool IGame::InitSystems()
 {
 	m_window = new Display(m_title, m_screenWidth, m_screenHeight, m_flags);
+	ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Window Created...");
 	return true;
 }
 
@@ -75,6 +80,7 @@ void IGame::Update()
 			m_currentScene->Update();
 			break;
 		case SceneState::CHANGE_NEXT:
+			ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Switching to Next Scene...");
 			m_currentScene->OnExit();
 			m_currentScene = m_sceneList->Next();
 			if (m_currentScene)
@@ -84,6 +90,7 @@ void IGame::Update()
 			}
 			break;
 		case SceneState::CHANGE_PREVIOUS:
+			ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Switching to Previous Scene...");
 			m_currentScene->OnExit();
 			m_currentScene = m_sceneList->Previous();
 			if (m_currentScene)

@@ -36,28 +36,44 @@ void ErrorLog::close()
 
 void ErrorLog::log(SeverityLevel severity, const std::string& message)
 {
-	if (severity > JADE_NONE)
+	setSeverity(severity);
+
+	std::string severityLevel;
+	switch (severity)
 	{
-		setSeverity(severity);
+	case JADE_NONE:
+		severityLevel = "JADE_NONE";
+		break;
+	case JADE_INFO:
+		severityLevel = "JADE_INFO";
+		break;
+	case JADE_ERROR:
+		severityLevel = "JADE_ERROR";
+		break;
+	case JADE_WARNING:
+		severityLevel = "JADE_WARNING";
+		break;
+	case JADE_TRACE:
+		severityLevel = "JADE_TRACE";
+		break;
 	}
 
-	if (severity >= m_currentSeverity && m_currentSeverity > JADE_NONE)
+	if (m_outputStream == nullptr)
 	{
-		if (m_outputStream == nullptr)
-		{
-			setLogFile(logFileName);
-			setUpLog(logFileName);
-		}
-		Num_Errors++;
-		(*m_outputStream) << "Error # : " << std::to_string(Num_Errors) << "\n"
-			<< "Time Occured : " << getTime() << "\n"
-			<< "Error Message : " << "\n"
-			<< "---------------------------------------------" << "\n"
-			<< message << "\n"
-			<< "---------------------------------------------" << "\n";
-
-		m_outputStream->flush();
+		setLogFile(logFileName);
+		setUpLog(logFileName);
 	}
+	Num_Errors++;
+	(*m_outputStream) << "Error # : " << std::to_string(Num_Errors) << "\n"
+		<< "Time Occured : " << getTime() << "\n"
+		<< "Error Message : " << "\n"
+		<< "Error Severity : " << severityLevel << "\n"
+		<< "---------------------------------------------" << "\n"
+		<< message << "\n"
+		<< "---------------------------------------------" << "\n";
+
+	m_outputStream->flush();
+
 }
 
 void ErrorLog::setLogFile(const std::string& fileName)
@@ -68,7 +84,7 @@ void ErrorLog::setLogFile(const std::string& fileName)
 	//Getting an Error here, create a LogFiles directory.
 	m_outputStream = new std::ofstream(path + fileName.c_str());
 	setUpLog(fileName);
-	m_currentSeverity = JADE_ERROR;
+	m_currentSeverity = JADE_NONE;
 }
 
 void ErrorLog::error(const std::string& message)

@@ -25,14 +25,14 @@ Texture * TextureResources::Load(const std::string& filePath)
 
 	if (!Utility::readFileToBuffer(filePath, in))
 	{
-		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Failed to load PNG file " + filePath + " to buffer! Line 28 TextureResources");
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, "Failed to load PNG file " + filePath + " to buffer!");
 	}
 
 
 	int errorCode = decodePNG(out, width, height, &(in[0]), in.size());
 	if (errorCode != 0)
 	{
-		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "decodePNG failed with error: " + std::to_string(errorCode) + " Line 35 TextureResources");
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, "decodePNG failed with error: " + std::to_string(errorCode));
 	}
 
 	glGenTextures(1, &(texture->m_id));
