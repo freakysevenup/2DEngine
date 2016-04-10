@@ -1,6 +1,7 @@
 #include "InputManager.h"
 #include "..\Rendering\Display.h"
 #include <string>
+#include "ErrorLog.h"
 
 InputManager::InputManager(Display* window)
 	: m_window(window)
@@ -8,7 +9,7 @@ InputManager::InputManager(Display* window)
 	controller = SDL_GameControllerOpen(0);
 	if (controller == nullptr)
 	{
-
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "There is no controller connected to the device...");
 	}
 }
 
@@ -50,6 +51,8 @@ bool InputManager::Update(SDL_Event& _inputEvent)
 		switch (_inputEvent.type)
 		{
 		case SDL_QUIT:
+			SDL_Quit();
+			exit(0);
 			return true;
 		case SDL_KEYDOWN:
 			keyDownState = true;
@@ -202,7 +205,7 @@ void InputManager::SetCursor(bool visible) const
 
 void InputManager::SetMousePosition(const vec2& pos) const
 {
-	SDL_WarpMouseInWindow(m_window->getWindow(), (int)pos.x, (int)pos.y);
+	SDL_WarpMouseInWindow(m_window->GetWindow(), (int)pos.x, (int)pos.y);
 }
 
 const bool InputManager::PadButtonDown(Uint8 _button) const

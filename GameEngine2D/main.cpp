@@ -2,8 +2,8 @@
 
 int main(int argc, char** argv)
 {
-	TestGame g("First Window", 500, 500, 0);
-	g.run();
-
+	TestGame g;
+	g.SetWindowProperties("First Window Redone", 500, 500, 0, 60.0f);
+	g.Run();
 	return 0;
 }

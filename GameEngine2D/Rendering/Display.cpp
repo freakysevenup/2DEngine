@@ -1,6 +1,7 @@
 #include "Display.h"
 #include <glew\glew.h>
 #include <assert.h>
+#include "..\Core\ErrorLog.h"
 
 Display::Display(const std::string& name, const int& screenWidth, const int& screenHeight, unsigned int windowFlags) : 
 m_input(this),
@@ -10,7 +11,7 @@ m_screenName(name)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
-		//Error handle
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, "SDL was not initialized.. Line 14 Display");
 		assert(0 != 0);
 	}
 
@@ -21,6 +22,7 @@ m_screenName(name)
 	SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 
 	Uint32 flags = SDL_WINDOW_OPENGL;
 
@@ -49,7 +51,7 @@ m_screenName(name)
 	GLenum err = glewInit();
 	if (err != GLEW_OK)
 	{
-		fprintf(stderr, "Error: '%s'\n", glewGetErrorString(err));
+		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, reinterpret_cast<const char*>(glewGetErrorString(err)));
 	}
 
 }
@@ -61,13 +63,13 @@ Display::~Display()
 	SDL_Quit();
 }
 
-void Display::clearScreen(float r /* = 0.0f */, float g /* = 0.0f */, float b /* = 1.0f */, float a /* = 1.0f */)
+void Display::ClearScreen(float r /* = 0.0f */, float g /* = 0.0f */, float b /* = 1.0f */, float a /* = 1.0f */)
 {
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Display::swapBuffers()
+void Display::SwapBuffers()
 {
 	SDL_GL_SwapWindow(m_window);
 }

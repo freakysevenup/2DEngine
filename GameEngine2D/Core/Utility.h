@@ -18,4 +18,7 @@ namespace Utility
 	float getDistance(const vec2& point1, const vec2& point2);
 	float getMax(const vec2& vec);
 	float getRandomNumber(float min = 0.0f, float max = 1.0f);
+	template<typename T> inline T clamp(const T &a, const T &min, const T &max);
+	bool readFileToBuffer(std::string filePath, std::vector<unsigned char>& buffer);
+	bool readFileToBuffer(std::string filePath, std::string & buffer);
 }
