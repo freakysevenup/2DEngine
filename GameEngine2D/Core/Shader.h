@@ -1,5 +1,5 @@
 #pragma once
-#include "..\Core\Reference.h"
+#include "Reference.h"
 
 #include <string>
 #include <map>

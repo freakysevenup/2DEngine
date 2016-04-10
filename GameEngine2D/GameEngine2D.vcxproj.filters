@@ -8,9 +8,6 @@
     <Filter Include="Core">
       <UniqueIdentifier>{7c913999-8d0f-4729-be3e-5d135bf8140f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rendering">
-      <UniqueIdentifier>{1e741f3d-be5f-4ec8-8369-5501046ac7a9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestGame.cpp" />
@@ -24,20 +21,8 @@
     <ClCompile Include="Core\Time.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Display.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\Shader.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Utility.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\TextureResources.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\picoPNG.cpp">
-      <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Core\Renderer.cpp">
       <Filter>Core</Filter>
@@ -52,6 +37,21 @@
     <ClCompile Include="Core\FPSLimiter.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Camera.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Display.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\picoPNG.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Shader.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\TextureResources.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestGame.h" />
@@ -64,26 +64,11 @@
     <ClInclude Include="Core\Time.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Display.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Reference.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Shader.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Utility.h">
       <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\TextureResources.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\Texture.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\picoPNG.h">
-      <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Core\Renderer.h">
       <Filter>Core</Filter>
@@ -99,6 +84,30 @@
     </ClInclude>
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Core\FPSLimiter.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Camera.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ColourRGB8.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Display.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\picoPNG.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Shader.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Texture.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\TextureResources.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Vertex.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

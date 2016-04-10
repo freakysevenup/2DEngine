@@ -1,7 +1,7 @@
 #pragma once
 #include <glew\glew.h>
 #include <string>
-#include "..\Core\Reference.h"
+#include "Reference.h"
 
 class Texture : public Reference
 {

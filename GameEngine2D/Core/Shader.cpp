@@ -7,8 +7,8 @@
 #include <cstring>
 #include <sstream>
 
-#include "..\Core\ErrorLog.h"
-#include "..\Core\Utility.h"
+#include "ErrorLog.h"
+#include "Utility.h"
 
 //--------------------------------------------------------------------------------
 // Variable Initializations
