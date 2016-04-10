@@ -203,7 +203,7 @@ void InputManager::SetCursor(bool visible) const
 
 void InputManager::SetMousePosition(const vec2& pos) const
 {
-	SDL_WarpMouseInWindow(m_window->getWindow(), (int)pos.x, (int)pos.y);
+	SDL_WarpMouseInWindow(m_window->GetWindow(), (int)pos.x, (int)pos.y);
 }
 
 const bool InputManager::PadButtonDown(Uint8 _button) const

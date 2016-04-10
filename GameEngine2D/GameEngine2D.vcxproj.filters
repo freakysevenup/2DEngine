@@ -39,6 +39,19 @@
     <ClCompile Include="Rendering\picoPNG.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Renderer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\IGame.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ISceneList.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Core\FPSLimiter.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestGame.h" />
@@ -71,6 +84,22 @@
     </ClInclude>
     <ClInclude Include="Rendering\picoPNG.h">
       <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Renderer.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IScene.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IGame.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ISceneList.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Core\FPSLimiter.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

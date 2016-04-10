@@ -1,41 +1,20 @@
+#include ".\Core\ISceneList.h"
+
 #include "TestGame.h"
-#include <SDL2\SDL_events.h>
 
-void TestGame::run()
+void TestGame::OnInit()
 {
-	// set up 
 
-
-	// call update
-	update();
 }
 
-void TestGame::processInput()
+void TestGame::AddScene()
 {
-	SDL_Event eve;
-	if (m_input->Update(eve))
-	{
-		m_state = EXIT;
-	}
+	m_mainGame = std::make_unique<MainGame>();
+	m_sceneList->AddScene(m_mainGame.get());
+	m_sceneList->SetScene(m_mainGame->GetSceneIndex());
 }
 
-void TestGame::update()
-{
-	// if game is running,
-	// refresh window, check input and call draw
-	while (m_state == RUNNING)
-	{
-		m_window->swapBuffers();
-		m_window->clearScreen(1.0f, 0.0f, 0.0f);
-		processInput();
-
-		draw();
-	}
-}
-
-void TestGame::draw()
+void TestGame::OnExit()
 {
 
-	// draw stuff
-	update();
 }

@@ -32,68 +32,64 @@ public:
 	/// </summary>
 	~Display();
 
-	void clearScreen(float r = 0.0f, float g = 0.0f, float b = 1.0f, float a = 1.0f);
+	void ClearScreen(float r = 0.0f, float g = 0.0f, float b = 1.0f, float a = 1.0f);
 	/// <summary>
 	/// Swaps the buffers.
 	/// </summary>
-	void swapBuffers();
+	void SwapBuffers();
 	
 	/// <summary>
 	/// Determines whether this window is closed.
 	/// </summary>
 	/// <returns>If the window is closed.</returns>
-	inline bool isClosed() const { return m_isClosed; }
+	inline bool IsClosed() const { return m_isClosed; }
 	/// <summary>
 	/// Gets the width of the screen.
 	/// </summary>
 	/// <returns>THe screen width.</returns>
-	inline const int getScreenWidth() const { return m_screenWidth; }
+	inline const int GetScreenWidth() const { return m_screenWidth; }
 	/// <summary>
 	/// Gets the height of the screen.
 	/// </summary>
 	/// <returns>The screen height.</returns>
-	inline const int getScreenHeight() const { return m_screenHeight; }
+	inline const int GetScreenHeight() const { return m_screenHeight; }
 	/// <summary>
 	/// Gets the aspect ratio of the screen.
 	/// </summary>
 	/// <returns>The screen's aspect ratio.</returns>
-	inline const float getAspectRatio() const { return (float)m_screenWidth / (float)m_screenHeight; }
+	inline const float GetAspectRatio() const { return (float)m_screenWidth / (float)m_screenHeight; }
 	/// <summary>
 	/// Gets the center position of the window.
 	/// </summary>
 	/// <returns>The center point of the window.</returns>
-	inline const vec2 getCenter() const { return vec2((float)m_screenWidth / 2.0f, (float)m_screenHeight / 2.0f); }
+	inline const vec2 GetCenter() const { return vec2((float)m_screenWidth / 2.0f, (float)m_screenHeight / 2.0f); }
 	/// <summary>
 	/// Gets the name of the screen.
 	/// </summary>
 	/// <returns>The name of the window.</returns>
-	inline const std::string getScreenName() const { return m_screenName; }
+	inline const std::string GetScreenName() const { return m_screenName; }
 	/// <summary>
 	/// Gets the window.
 	/// </summary>
 	/// <returns>A pointer to the <see cref='SDL_Window'/>.</returns>
-	inline SDL_Window* getWindow() const { return m_window; }
+	inline SDL_Window* GetWindow() const { return m_window; }
 
 	/// <summary>
 	/// Gets the input manager.
 	/// </summary>
 	/// <returns>A copy of the Inout Manager object.</returns>
-	InputManager* getInput() { return &m_input; }
+	InputManager* GetInput() { return &m_input; }
 
 	/// <summary>
 	/// Sets the width of the screen.
 	/// </summary>
 	/// <param name="screenWidth">Width of the screen.</param>
-	void setScreenWidth(int screenWidth);
+	void SetScreenWidth(int screenWidth);
 	/// <summary>
 	/// Sets the height of the screen.
 	/// </summary>
 	/// <param name="screenHeight">Height of the screen.</param>
-	void setScreenHeight(int screenHeight);
-	/// <summary>
-	/// Binds the render target to the screen.
-	/// </summary>
-	void bindAsRenderTarget() const;
+	void SetScreenHeight(int screenHeight);
 
 private:
 	/// <summary>

@@ -1,6 +1,7 @@
 #pragma once
-#include "Rendering\Display.h"
-#include "Core\InputManager.h"
+#include <memory>
+#include "Core\IGame.h"
+#include "MainGame.h"
 
 enum GameState
 {
@@ -9,33 +10,22 @@ enum GameState
 	EXIT
 };
 
-class TestGame
+class TestGame : public IGame
 {
 public:
-	TestGame(const std::string& windowTitle, unsigned int windowWidth, unsigned int windowHeight, unsigned int flags)
-	{
-		m_window = new Display(windowTitle, windowWidth, windowHeight, flags);
-		m_state = RUNNING;
-		m_input = new InputManager();
-	}
 
+	TestGame() :
+	m_mainGame(nullptr) {}
 	~TestGame() 
-	{
-		delete m_window;
-		delete m_input;
-	}
+	{}
 
-	void run();
+	virtual void OnInit() override;
+	virtual void AddScene() override;
+	virtual void OnExit() override;
 
 private:
 
-	void processInput();
-	void update();
-	void draw();
-
-	Display * m_window;
-	InputManager * m_input;
-	GameState m_state;
+	std::unique_ptr<MainGame> m_mainGame;
 
 };
 

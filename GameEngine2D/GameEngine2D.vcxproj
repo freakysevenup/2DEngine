@@ -19,7 +19,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -45,13 +45,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)Deps/include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Deps/lib/Release;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader />
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -66,22 +68,28 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader />
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>fmod_vc.lib;fmodL_vc.lib;glew32.lib;glew32s.lib;opengl32.lib;SDL2.lib;SDL2main.lib;CEGUIBase-0.lib;CEGUIOpenGLRenderer-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core\ErrorLog.cpp" />
+    <ClCompile Include="Core\FPSLimiter.cpp" />
+    <ClCompile Include="Core\IGame.cpp" />
     <ClCompile Include="Core\InputManager.cpp" />
+    <ClCompile Include="Core\ISceneList.cpp" />
+    <ClCompile Include="Core\Renderer.cpp" />
     <ClCompile Include="Core\Time.cpp" />
     <ClCompile Include="Core\Utility.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Rendering\Display.cpp" />
     <ClCompile Include="Rendering\picoPNG.cpp" />
     <ClCompile Include="Rendering\Shader.cpp" />
@@ -90,10 +98,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\ErrorLog.h" />
+    <ClInclude Include="Core\FPSLimiter.h" />
+    <ClInclude Include="Core\IGame.h" />
     <ClInclude Include="Core\InputManager.h" />
+    <ClInclude Include="Core\ISceneList.h" />
     <ClInclude Include="Core\Reference.h" />
+    <ClInclude Include="Core\Renderer.h" />
+    <ClInclude Include="Core\IScene.h" />
     <ClInclude Include="Core\Time.h" />
     <ClInclude Include="Core\Utility.h" />
+    <ClInclude Include="MainGame.h" />
     <ClInclude Include="Rendering\Display.h" />
     <ClInclude Include="Rendering\picoPNG.h" />
     <ClInclude Include="Rendering\Shader.h" />
