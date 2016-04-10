@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "SceneNode.h"
 
 #define NO_LOADED_SCENE -1
 
@@ -34,9 +35,10 @@ public:
 	virtual void Update() const = 0;
 	virtual void ProcessInput() const = 0;
 
-	int GetSceneIndex() const { return m_sceneIndex; }
-	SceneState GetState() const { return m_currentState; }
-	std::string GetSceneName() const { return m_sceneName; }
+	inline int GetSceneIndex() const { return m_sceneIndex; }
+	inline SceneState GetState() const { return m_currentState; }
+	inline std::string GetSceneName() const { return m_sceneName; }
+	inline SceneNode * GetRoot() const { return m_root; }
 
 	void SetParent(IGame * game) { m_game = game; }
 	void SetRunning() { m_currentState = SceneState::RUNNING; }
@@ -47,6 +49,7 @@ protected:
 	int m_sceneIndex;
 	SceneState m_currentState;
 	IGame * m_game;
+	SceneNode * m_root;
 	std::string m_sceneName;
 };
 

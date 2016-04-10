@@ -24,9 +24,6 @@
     <ClCompile Include="Core\Utility.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Renderer.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Core\IGame.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -46,10 +43,13 @@
     <ClCompile Include="Core\picoPNG.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Shader.cpp">
+    <ClCompile Include="Core\TextureResources.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\TextureResources.cpp">
+    <ClCompile Include="Core\SceneNode.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Shader.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,9 +68,6 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Utility.h">
-      <Filter>Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Renderer.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\IScene.h">
@@ -98,9 +95,6 @@
     <ClInclude Include="Core\picoPNG.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Shader.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Texture.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -108,6 +102,12 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Vertex.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SceneNode.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Shader.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
