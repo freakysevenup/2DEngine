@@ -52,6 +52,9 @@
     <ClCompile Include="Core\Shader.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Core\SpriteBatch.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestGame.h" />
@@ -108,6 +111,9 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\Shader.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SpriteBatch.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

@@ -23,15 +23,18 @@ enum COLOUR
 	BLACK
 };
 
-struct ColourRGBA8
+struct ColourRGB8
 {
-	ColourRGBA8(float r = 0.0f, float g = 0.0f, float b = 0.0f, float a = 1.0f) :
-		m_colour(r, g, b, a) { }
-	ColourRGBA8(vec4 colour = vec4(0.0f, 0.0f, 0.0f, 1.0f)) :
+	ColourRGB8(float r, float g, float b, float a = 1.0f)
+	{
+		r == NULL ? m_colour.r = 0.0f : m_colour.r = r;
+		g == NULL ? m_colour.g = 0.0f : m_colour.g = g;
+		b == NULL ? m_colour.b = 0.0f : m_colour.b = b;
+		a == NULL ? m_colour.a = 0.0f : m_colour.a = a;
+	}
+	ColourRGB8(vec4 colour = vec4(0.0f, 0.0f, 0.0f, 1.0f)) :
 		m_colour(colour) { }
-	ColourRGBA8(COLOUR colour = WHITE) :
-		m_colour(colour) { }
-	~ColourRGBA8() {}
+	~ColourRGB8() {}
 
 	inline vec4 GetColour() const { return m_colour; }
 
@@ -103,7 +106,6 @@ struct ColourRGBA8
 		}
 	}
 
-private:
 	vec4 m_colour;
 };
 
