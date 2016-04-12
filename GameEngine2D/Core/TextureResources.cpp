@@ -91,5 +91,6 @@ Texture * TextureResources::Get(const std::string& name)
 		(*it).second->addReference();
 		return (*it).second;
 	}
+	ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_ERROR, name + " Texture not found, nullptr returned");
 	return nullptr;
 }

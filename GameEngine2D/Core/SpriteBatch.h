@@ -2,6 +2,7 @@
 #include "Vertex.h"
 #include <vector>
 #include <glew\glew.h>
+#include "Rectangle.h"
 #include <glm\glm.hpp>
 using namespace glm;
 
@@ -27,15 +28,15 @@ public:
 
 	Glyph() {}
 	Glyph(
-		const vec4& destRect, 
-		const vec4& uvRect, 
+		Rectangle& destRect,
+		Rectangle& uvRect,
 		GLuint TextureID, 
 		float zLayer, 
 		const vec4&colour);
 
 	Glyph(
-		const vec4& destRect, 
-		const vec4& uvRect, 
+		Rectangle& destRect,
+		Rectangle& uvRect,
 		GLuint TextureID, 
 		float zLayer, 
 		const vec4&colour, 
@@ -81,23 +82,23 @@ public:
 	void End();
 
 	void Draw(
-		const vec4& destRect, 
-		const vec4& uvRect, 
+		Rectangle& destRect,
+		Rectangle& uvRect,
 		GLuint textureID, 
 		float zLayer, 
 		const vec4& colour);
 
 	void Draw(
-		const vec4& destRect, 
-		const vec4& uvRect, 
+		Rectangle& destRect,
+		Rectangle& uvRect,
 		GLuint textureID, 
 		float zLayer, 
 		const vec4& colour, 
 		float angle);
 
 	void Draw(
-		const vec4& destRect, 
-		const vec4& uvRect, 
+		Rectangle& destRect,
+		Rectangle& uvRect,
 		GLuint textureID, 
 		float zLayer, 
 		const vec4& colour, 

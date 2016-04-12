@@ -2,7 +2,7 @@
 #include <glm\glm.hpp>
 using namespace glm;
 
-enum COLOUR
+enum COLOUR_SWATCH
 {
 	RED,
 	DARK_RED,
@@ -34,6 +34,8 @@ struct ColourRGB8
 	}
 	ColourRGB8(vec4 colour = vec4(0.0f, 0.0f, 0.0f, 1.0f)) :
 		m_colour(colour) { }
+	ColourRGB8(COLOUR_SWATCH colour) :
+		m_colour(SetColour(colour)) { }
 	~ColourRGB8() {}
 
 	inline vec4 GetColour() const { return m_colour; }
@@ -48,7 +50,7 @@ struct ColourRGB8
 		m_colour = colour;
 	}
 
-	vec4 SetColour(COLOUR colour)
+	vec4 SetColour(COLOUR_SWATCH colour)
 	{
 		switch (colour)
 		{

@@ -91,6 +91,7 @@
     <ClCompile Include="Core\picoPNG.cpp" />
     <ClCompile Include="Core\Shader.cpp" />
     <ClCompile Include="Core\Sprite.cpp" />
+    <ClCompile Include="Core\SpriteAnimation.cpp" />
     <ClCompile Include="Core\SpriteBatch.cpp" />
     <ClCompile Include="Core\TextureResources.cpp" />
     <ClCompile Include="Core\CalculatedTime.cpp" />
@@ -108,12 +109,15 @@
     <ClInclude Include="Core\IGame.h" />
     <ClInclude Include="Core\InputManager.h" />
     <ClInclude Include="Core\ISceneList.h" />
+    <ClInclude Include="Core\Rectangle.h" />
     <ClInclude Include="Core\SceneNode.h" />
     <ClInclude Include="Core\picoPNG.h" />
     <ClInclude Include="Core\Reference.h" />
     <ClInclude Include="Core\IScene.h" />
     <ClInclude Include="Core\Shader.h" />
     <ClInclude Include="Core\Sprite.h" />
+    <ClInclude Include="Core\SpriteAnimation.h" />
+    <ClInclude Include="Core\SpriteAtlas.h" />
     <ClInclude Include="Core\SpriteBatch.h" />
     <ClInclude Include="Core\Texture.h" />
     <ClInclude Include="Core\TextureResources.h" />

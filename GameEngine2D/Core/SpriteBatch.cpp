@@ -2,40 +2,40 @@
 #include <algorithm>
 
 Glyph::Glyph(
-	const vec4& destRect,
-	const vec4& uvRect,
+	Rectangle& destRect,
+	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
 	const vec4&colour) :
 	texture_(textureID), zLayer_(zLayer)
 {
 	topLeft_.v_colour.c = colour;
-	topLeft_.setPosition(destRect.x, destRect.y + destRect.w);
-	topLeft_.setUV(uvRect.x, uvRect.y + uvRect.w);
+	topLeft_.setPosition(destRect.GetX(), destRect.GetY() + destRect.GetHeight());
+	topLeft_.setUV(uvRect.GetX(), uvRect.GetY() + uvRect.GetHeight());
 
 	bottomLeft_.v_colour.c = colour;
-	bottomLeft_.setPosition(destRect.x, destRect.y);
-	bottomLeft_.setUV(uvRect.x, uvRect.y);
+	bottomLeft_.setPosition(destRect.GetX(), destRect.GetY());
+	bottomLeft_.setUV(uvRect.GetX(), uvRect.GetY());
 
 	bottomRight_.v_colour.c = colour;
-	bottomRight_.setPosition(destRect.x + destRect.z, destRect.y);
-	bottomRight_.setUV(uvRect.x + uvRect.z, uvRect.y);
+	bottomRight_.setPosition(destRect.GetX() + destRect.GetWidth(), destRect.GetY());
+	bottomRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY());
 
 	topRight_.v_colour.c = colour;
-	topRight_.setPosition(destRect.x + destRect.z, destRect.y + destRect.w);
-	topRight_.setUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
+	topRight_.setPosition(destRect.GetX() + destRect.GetWidth(), destRect.GetY() + destRect.GetHeight());
+	topRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY() + uvRect.GetHeight());
 }
 
 Glyph::Glyph(
-	const vec4& destRect,
-	const vec4& uvRect,
+	Rectangle& destRect,
+	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
 	const vec4&colour,
 	float angle) :
 	texture_(textureID), zLayer_(zLayer)
 {
-	glm::vec2 halfDimensions(destRect.z / 2.0f, destRect.w / 2.0f);
+	glm::vec2 halfDimensions(destRect.GetWidth() / 2.0f, destRect.GetHeight() / 2.0f);
 
 	// Get points centered at origin
 	glm::vec2 tl(-halfDimensions.x, halfDimensions.y);
@@ -50,20 +50,20 @@ Glyph::Glyph(
 	tr = RotatePoint(tr, angle) + halfDimensions;
 
 	topLeft_.v_colour.c = colour;
-	topLeft_.setPosition(destRect.x + tl.x, destRect.y + tl.y);
-	topLeft_.setUV(uvRect.x, uvRect.y + uvRect.w);
+	topLeft_.setPosition(destRect.GetX() + tl.x, destRect.GetY() + tl.y);
+	topLeft_.setUV(uvRect.GetX(), uvRect.GetY() + uvRect.GetHeight());
 
 	bottomLeft_.v_colour.c = colour;
-	bottomLeft_.setPosition(destRect.x + bl.x, destRect.y + bl.y);
-	bottomLeft_.setUV(uvRect.x, uvRect.y);
+	bottomLeft_.setPosition(destRect.GetX() + bl.x, destRect.GetY() + bl.y);
+	bottomLeft_.setUV(uvRect.GetX(), uvRect.GetY());
 
 	bottomRight_.v_colour.c = colour;
-	bottomRight_.setPosition(destRect.x + br.x, destRect.y + br.y);
-	bottomRight_.setUV(uvRect.x + uvRect.z, uvRect.y);
+	bottomRight_.setPosition(destRect.GetX() + br.x, destRect.GetY() + br.y);
+	bottomRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY());
 
 	topRight_.v_colour.c = colour;
-	topRight_.setPosition(destRect.x + tr.x, destRect.y + tr.y);
-	topRight_.setUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
+	topRight_.setPosition(destRect.GetX() + tr.x, destRect.GetY() + tr.y);
+	topRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY() + uvRect.GetHeight());
 	angle = angle;
 }
 
@@ -132,8 +132,8 @@ void SpriteBatch::End()
 }
 
 void SpriteBatch::Draw(
-	const vec4& destRect,
-	const vec4& uvRect,
+	Rectangle& destRect,
+	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
 	const vec4& colour)
@@ -142,8 +142,8 @@ void SpriteBatch::Draw(
 }
 
 void SpriteBatch::Draw(
-	const vec4& destRect,
-	const vec4& uvRect,
+	Rectangle& destRect,
+	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
 	const vec4& colour,
@@ -153,8 +153,8 @@ void SpriteBatch::Draw(
 }
 
 void SpriteBatch::Draw(
-	const vec4& destRect,
-	const vec4& uvRect,
+	Rectangle& destRect,
+	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
 	const vec4& colour,
