@@ -11,7 +11,7 @@ m_screenName(name)
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
-		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, "SDL was not initialized.. Line 14 Display");
+		ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_ERROR, "SDL was not initialized.. Line 14 Display");
 		assert(0 != 0);
 	}
 
@@ -51,7 +51,7 @@ m_screenName(name)
 	GLenum err = glewInit();
 	if (err != GLEW_OK)
 	{
-		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, reinterpret_cast<const char*>(glewGetErrorString(err)));
+		ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_ERROR, reinterpret_cast<const char*>(glewGetErrorString(err)));
 	}
 
 }

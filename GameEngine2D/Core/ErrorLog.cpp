@@ -13,6 +13,8 @@
 // ***********************************************************************
 
 #include "ErrorLog.h"
+#include <sys/stat.h>
+#include <memory>
 
 /// <summary>
 /// The instance{CC2D43FA-BBC4-448A-9D0B-7B57ADF2655C}
@@ -21,10 +23,10 @@ ErrorLog * ErrorLog::instance = nullptr;
 
 ErrorLog::~ErrorLog()
 {
-	close();
+	Close();
 }
 
-void ErrorLog::close()
+void ErrorLog::Close()
 {
 	if (m_outputStream != nullptr)
 	{
@@ -34,9 +36,9 @@ void ErrorLog::close()
 	}
 }
 
-void ErrorLog::log(SeverityLevel severity, const std::string& message)
+void ErrorLog::Log(SeverityLevel severity, const std::string& message)
 {
-	setSeverity(severity);
+	SetSeverity(severity);
 
 	std::string severityLevel;
 	switch (severity)
@@ -60,55 +62,59 @@ void ErrorLog::log(SeverityLevel severity, const std::string& message)
 
 	if (m_outputStream == nullptr)
 	{
-		setLogFile(logFileName);
-		setUpLog(logFileName);
+		SetLogFile(logFileName);
+		SetUpLog(logFileName);
 	}
 	Num_Errors++;
 	(*m_outputStream) << "Error # : " << std::to_string(Num_Errors) << "\n"
-		<< "Time Occured : " << getTime() << "\n"
-		<< "Error Message : " << "\n"
+		<< "Time Occured : " << GetTime() << "\n"
 		<< "Error Severity : " << severityLevel << "\n"
+		<< "Error Message : " << "\n"
 		<< "---------------------------------------------" << "\n"
 		<< message << "\n"
-		<< "---------------------------------------------" << "\n";
+		<< "---------------------------------------------" << "\n\n";
 
 	m_outputStream->flush();
 
 }
 
-void ErrorLog::setLogFile(const std::string& fileName)
+void ErrorLog::SetLogFile(const std::string& fileName)
 {
-	close();
+	Close();
 	logWasSetup = false;
-	std::string path = "./LogFiles/";
+
+	// Create Directory for Saving this log file if one does not already exist
+	// Works on Windows and UNIX systems
+	system("mkdir .\\ErrorLog\\");
+
 	//Getting an Error here, create a LogFiles directory.
-	m_outputStream = new std::ofstream(path + fileName.c_str());
-	setUpLog(fileName);
+	m_outputStream = new std::ofstream(std::string(".\\ErrorLog\\") + fileName.c_str());
+	SetUpLog(fileName);
 	m_currentSeverity = JADE_NONE;
 }
 
-void ErrorLog::error(const std::string& message)
+void ErrorLog::Error(const std::string& message)
 {
-	log(JADE_ERROR, message);
+	Log(JADE_ERROR, message);
 }
 
-void ErrorLog::warning(const std::string& message)
+void ErrorLog::Warning(const std::string& message)
 {
 
-	log(JADE_WARNING, message);
+	Log(JADE_WARNING, message);
 }
 
-void ErrorLog::trace(const std::string& message)
+void ErrorLog::Trace(const std::string& message)
 {
-	log(JADE_TRACE, message);
+	Log(JADE_TRACE, message);
 }
 
-void ErrorLog::info(const std::string& message)
+void ErrorLog::Info(const std::string& message)
 {
-	log(JADE_INFO, message);
+	Log(JADE_INFO, message);
 }
 
-void ErrorLog::setUpLog(const std::string& fileName)
+void ErrorLog::SetUpLog(const std::string& fileName)
 {
 	if (!logWasSetup)
 	{

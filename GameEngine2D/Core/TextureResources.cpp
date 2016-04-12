@@ -25,14 +25,14 @@ Texture * TextureResources::Load(const std::string& filePath)
 
 	if (!Utility::readFileToBuffer(filePath, in))
 	{
-		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, "Failed to load PNG file " + filePath + " to buffer!");
+		ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_ERROR, "Failed to load PNG file " + filePath + " to buffer!");
 	}
 
 
 	int errorCode = decodePNG(out, width, height, &(in[0]), in.size());
 	if (errorCode != 0)
 	{
-		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, "decodePNG failed with error: " + std::to_string(errorCode));
+		ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_ERROR, "decodePNG failed with error: " + std::to_string(errorCode));
 	}
 
 	glGenTextures(1, &(texture->m_id));
@@ -52,7 +52,7 @@ Texture * TextureResources::Load(const std::string& filePath)
 
 	Register(filePath, texture);
 
-	ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_INFO, filePath + " Texture Loaded");
+	ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, filePath + " Texture Loaded");
 
 	return texture;
 }
@@ -61,7 +61,7 @@ void TextureResources::Free(const std::string& filePath)
 {
 	UnRegister(filePath);
 	glDeleteTextures(1, &Get(filePath)->m_id);
-	ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_INFO, filePath + " Texture Freed");
+	ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, filePath + " Texture Freed");
 }
 
 void TextureResources::Register(const std::string& name, Texture* resource)

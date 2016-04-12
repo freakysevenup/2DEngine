@@ -26,6 +26,5 @@ public:
 private:
 
 	std::unique_ptr<MainGame> m_mainGame;
-
 };
 

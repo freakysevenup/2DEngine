@@ -28,7 +28,7 @@ void IGame::Run()
 		{
 			Render();
 			m_fps = fpsLimiter.End();
-			m_window->ClearScreen(1.0f, 0.0f, 0.0f, 1.0f);
+			m_window->ClearScreen(1.0f, 1.0f, 1.0f, 1.0f);
 			m_window->SwapBuffers();
 		}
 	}
@@ -46,7 +46,7 @@ void IGame::ExitGame()
 
 	m_isRunning = false;
 
-	ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_INFO, "Game Exited...");
+	ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, "Game Exited...");
 	SDL_Quit();
 	exit(0);
 }
@@ -55,6 +55,12 @@ bool IGame::Init()
 {
 	InitSystems();
 	OnInit();
+
+	if (m_window == nullptr)
+	{
+		m_window = new Display("DEFAULT", 500, 500, 0);
+	}
+
 	AddScene();
 
 	m_currentScene = m_sceneList->GetCurrentScene();
@@ -65,8 +71,7 @@ bool IGame::Init()
 
 bool IGame::InitSystems()
 {
-	m_window = new Display(m_title, m_screenWidth, m_screenHeight, m_flags);
-	ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Window Created...");
+
 	return true;
 }
 
@@ -80,7 +85,7 @@ void IGame::Update()
 			m_currentScene->Update();
 			break;
 		case SceneState::CHANGE_NEXT:
-			ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Switching to Next Scene...");
+			ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, "Switching to Next Scene...");
 			m_currentScene->OnExit();
 			m_currentScene = m_sceneList->Next();
 			if (m_currentScene)
@@ -90,7 +95,7 @@ void IGame::Update()
 			}
 			break;
 		case SceneState::CHANGE_PREVIOUS:
-			ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_WARNING, "Switching to Previous Scene...");
+			ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, "Switching to Previous Scene...");
 			m_currentScene->OnExit();
 			m_currentScene = m_sceneList->Previous();
 			if (m_currentScene)
@@ -123,9 +128,11 @@ void IGame::Render()
 
 void IGame::SetWindowProperties(const std::string title/* = "Default title"*/, int width/*  = 1920*/, int height/*  = 1080*/, int flags/*  = 0*/, float fps/*  = 60.0f*/)
 {
+	m_window = new Display(title, width, height, flags);
 	m_screenWidth = width;
 	m_screenHeight = height;
 	m_fps = fps;
 	m_title = title;
 	m_flags = flags;
+	ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, "Window Created...");
 }

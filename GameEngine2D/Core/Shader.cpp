@@ -41,7 +41,7 @@ void Shader::Init(const GLchar* vertexPath, const GLchar* fragmentPath, const GL
 	}
 	catch (std::ifstream::failure e)
 	{
-		ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ");
+		ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_ERROR, "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ");
 	}
 	const GLchar* vShaderCode = vertexCode.c_str();
 	const GLchar * fShaderCode = fragmentCode.c_str();
@@ -54,11 +54,17 @@ void Shader::Init(const GLchar* vertexPath, const GLchar* fragmentPath, const GL
 	glShaderSource(vertex, 1, &vShaderCode, NULL);
 	glCompileShader(vertex);
 	checkCompileErrors(vertex, "VERTEX");
+
+	ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, "VERTEX SHADER::FILE_SUCCESFULLY_READ");
+
 	// Fragment Shader
 	fragment = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragment, 1, &fShaderCode, NULL);
 	glCompileShader(fragment);
 	checkCompileErrors(fragment, "FRAGMENT");
+
+	ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, "FRAGMENT SHADER::FILE_SUCCESFULLY_READ");
+
 	// If geometry shader is given, compile geometry shader
 	GLuint geometry;
 	if (geometryPath != nullptr)
@@ -68,6 +74,9 @@ void Shader::Init(const GLchar* vertexPath, const GLchar* fragmentPath, const GL
 		glShaderSource(geometry, 1, &gShaderCode, NULL);
 		glCompileShader(geometry);
 		checkCompileErrors(geometry, "GEOMETRY");
+
+		ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, "GEOMETRY SHADER::FILE_SUCCESFULLY_READ");
+
 	}
 
 	glBindAttribLocation(m_program, 0, "position");
@@ -88,6 +97,8 @@ void Shader::Init(const GLchar* vertexPath, const GLchar* fragmentPath, const GL
 	if (geometryPath != nullptr)
 		glDeleteShader(geometry);
 
+	ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, "SHADER_PROGRAM_SUCCESFULLY_INITIALIZED");
+
 }
 
 void Shader::checkCompileErrors(GLuint shader, const std::string& type)
@@ -100,7 +111,7 @@ void Shader::checkCompileErrors(GLuint shader, const std::string& type)
 		if (!success)
 		{
 			glGetShaderInfoLog(shader, 1024, NULL, infoLog);
-			ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, "| ERROR::::SHADER-COMPILATION-ERROR of type: " + type + " " + infoLog);
+			ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_ERROR, "| ERROR::::SHADER-COMPILATION-ERROR of type: " + type + " " + infoLog);
 		}
 	}
 	else
@@ -109,7 +120,7 @@ void Shader::checkCompileErrors(GLuint shader, const std::string& type)
 		if (!success)
 		{
 			glGetProgramInfoLog(shader, 1024, NULL, infoLog);
-			ErrorLog::getInstance()->log(ErrorLog::SeverityLevel::JADE_ERROR, "| ERROR::::PROGRAM-LINKING-ERROR of type: " + type + " " + infoLog);
+			ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_ERROR, "| ERROR::::PROGRAM-LINKING-ERROR of type: " + type + " " + infoLog);
 		}
 	}
 }

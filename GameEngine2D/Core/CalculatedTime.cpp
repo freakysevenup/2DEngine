@@ -1,5 +1,5 @@
 
-#include "Time.h"
+#include "CalculatedTime.h"
 #include <time.h>
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(_WIN64) || defined(WIN64)
@@ -33,7 +33,7 @@ static const long NANOSECONDS_PER_SECOND = 1000000000L;
 static std::chrono::system_clock::time_point m_epoch = std::chrono::high_resolution_clock::now();
 #endif
 
-double Time::getTime()
+double Time::GetTime()
 {
 #ifdef OS_WINDOWS
 	if (!g_timerInitialized)

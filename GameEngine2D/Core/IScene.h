@@ -27,13 +27,13 @@ public:
 
 	virtual int Next() const = 0;
 	virtual int Previous() const = 0;
-	virtual void Initialize() const = 0;
-	virtual void Dispose() const = 0;
-	virtual void OnEntry() const = 0;
-	virtual void OnExit() const = 0;
-	virtual void Render() const = 0;
-	virtual void Update() const = 0;
-	virtual void ProcessInput() const = 0;
+	virtual void Initialize() = 0;
+	virtual void Dispose() = 0;
+	virtual void OnEntry() = 0;
+	virtual void OnExit() = 0;
+	virtual void Render() = 0;
+	virtual void Update() = 0;
+	virtual void ProcessInput() = 0;
 
 	inline int GetSceneIndex() const { return m_sceneIndex; }
 	inline SceneState GetState() const { return m_currentState; }
