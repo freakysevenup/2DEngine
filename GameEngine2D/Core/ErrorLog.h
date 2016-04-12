@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <ctime>
-#include "Time.h"
+#include <time.h>
 
 class ErrorLog
 {
@@ -11,7 +11,7 @@ public:
 	/// <summary>
 	/// The log file name
 	/// </summary>
-	std::string logFileName = "..//JADE2D.log";
+	std::string logFileName = "..\\ErrorLog\\JADE2D.log";
 	/// <summary>
 	/// The SeverityLevel Enum of the ErrorLog
 	/// </summary>
@@ -32,71 +32,72 @@ public:
 	/// Gets the instance.
 	/// </summary>
 	/// <returns></returns>
-	static ErrorLog * getInstance()
+	static ErrorLog * GetInstance()
 	{
 		if (instance == nullptr)
 		{
 			instance = new ErrorLog;
 		}
+
 		return instance;
 	}
 	/// <summary>
 	/// Closes this instance.
 	/// </summary>
-	void close();
+	void Close();
 	/// <summary>
 	/// Logs the specified severity.
 	/// </summary>
 	/// <param name="severity">The severity.</param>
 	/// <param name="message">The message.</param>
-	void log(SeverityLevel severity, const std::string&  message);
+	void Log(SeverityLevel severity, const std::string&  message);
 	/// <summary>
 	/// Sets the log file.
 	/// </summary>
 	/// <param name="fileName">Name of the file.</param>
-	void setLogFile(const std::string& fileName);
+	void SetLogFile(const std::string& fileName);
 	/// <summary>
 	/// Sets the severity setting of the LogManager, only
 	///	those messages whose severity is greater than
 	///	or equal to this severity will be added to the log.
 	/// </summary>
 	/// <param name="severity">The minimum severity of messages to print.</param>
-	void setSeverity(SeverityLevel severity) { m_currentSeverity = severity; }
+	void SetSeverity(SeverityLevel severity) { m_currentSeverity = severity; }
 	/// <summary>
 	/// Returns the current severity of the ErrorLog
 	/// </summary>
 	/// <returns></returns>
-	SeverityLevel getSeverity() { return m_currentSeverity; }
+	SeverityLevel GetSeverity() { return m_currentSeverity; }
 	/// <summary>
 	/// Errors the specified message.
 	/// </summary>
 	/// <param name="message">The message.</param>
-	void error(const std::string& message);
+	void Error(const std::string& message);
 	/// <summary>
 	/// Warnings the specified message.
 	/// </summary>
 	/// <param name="message">The message.</param>
-	void warning(const std::string& message);
+	void Warning(const std::string& message);
 	/// <summary>
 	/// Traces the specified message.
 	/// </summary>
 	/// <param name="message">The message.</param>
-	void trace(const std::string& message);
+	void Trace(const std::string& message);
 	/// <summary>
 	/// Informations the specified message.
 	/// </summary>
 	/// <param name="message">The message.</param>
-	void info(const std::string& message);
+	void Info(const std::string& message);
 	/// <summary>
 	/// Sets up log.
 	/// </summary>
 	/// <param name="fileName">Name of the file.</param>
-	void setUpLog(const std::string& fileName);
+	void SetUpLog(const std::string& fileName);
 	/// <summary>
 	/// Gets the time.
 	/// </summary>
 	/// <returns></returns>
-	std::string getTime() { setRealTime(); return m_time; }
+	std::string GetTime() { SetRealTime(); return m_time; }
 
 private:
 	/// <summary>
@@ -119,11 +120,14 @@ private:
 	/// <summary>
 	/// Sets the real time.
 	/// </summary>
-	void setRealTime()
+	void SetRealTime()
 	{
-		time_t temp = (time_t)Time::getTime();
-		char str[32];
-		m_time = ctime_s(str, sizeof(str), &temp);
+		time_t temp;
+		time(&temp);
+		char str[80];
+		ctime_s(str, 26, &temp);
+		m_time = str;
+
 	}
 
 	/// <summary>
