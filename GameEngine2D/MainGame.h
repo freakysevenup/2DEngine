@@ -11,7 +11,8 @@
 class MainGame : public IScene
 {
 public:
-	MainGame(Display * display)
+	MainGame(Display * display) :
+		m_window(display)
 	{
 
 	}
@@ -36,5 +37,6 @@ public:
 	Shader * m_shaderProgram;
 	float m_counter = 0.0f;
 	PlayerTest * m_player;
+	Display * m_window;
 };
 
