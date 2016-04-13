@@ -29,10 +29,10 @@ void MainGame::OnEntry()
 	m_shaderProgram->Init("./Assets/Shaders/basicShader.vertGLSL", "./Assets/Shaders/basicShader.fragGLSL");
 
 	m_player = new PlayerTest();
-	m_player->SetPosition(vec2(0.0f, 0.0f));
+	m_player->SetPosition(glm::vec2(0.0f, 0.0f));
 
 	m_cam.Init(m_window->GetScreenWidth(), m_window->GetScreenHeight());
-	m_cam.SetScale(vec2(2.0f, 2.0f));
+	m_cam.SetScale(glm::vec2(2.0f, 2.0f));
 }
 
 void MainGame::OnExit()

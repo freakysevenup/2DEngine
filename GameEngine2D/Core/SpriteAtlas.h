@@ -3,13 +3,12 @@
 #include "Texture.h"
 #include "Rectangle.h"
 #include <glm\glm.hpp>
-using namespace glm;
 
 class SpriteAtlas
 {
 public:
 	SpriteAtlas() {}
-	SpriteAtlas(const Texture& texture, const vec2& dimensions) :
+	SpriteAtlas(const Texture& texture, const glm::vec2& dimensions) :
 		m_texture(texture),
 		m_width((int)dimensions.x),
 		m_height((int)dimensions.y)

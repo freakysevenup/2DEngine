@@ -14,5 +14,5 @@ void PlayerTest::Draw(SpriteBatch& spriteBatch, GLuint textureID)
 	Rectangle UV_RECT(0.0f, 0.0f, 1.0f, 1.0f);
 	float DEPTH = 0.0f;
 
-	spriteBatch.Draw(destRect, UV_RECT, textureID, DEPTH, vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	spriteBatch.Draw(destRect, UV_RECT, textureID, DEPTH, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
 }

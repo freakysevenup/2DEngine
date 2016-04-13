@@ -3,12 +3,11 @@
 #include <string>
 #include "Camera.h"
 #include <glm\glm.hpp>
-using namespace glm;
 
 class SceneNode
 {
 public:
-	SceneNode(const std::string& name, const std::string& tag = "", const vec2& position = vec2(0.0f), const vec2& scale = vec2(1.0f)) :
+	SceneNode(const std::string& name, const std::string& tag = "", const glm::vec2& position = glm::vec2(0.0f), const glm::vec2& scale = glm::vec2(1.0f)) :
 		m_name(name),
 		m_tag(tag),
 		m_position(position),
@@ -31,8 +30,8 @@ private:
 	std::string m_name;
 	std::string m_tag;
 	std::vector<SceneNode*> m_children;
-	vec2 m_position;
-	vec2 m_scale;
+	glm::vec2 m_position;
+	glm::vec2 m_scale;
 
 };
 

@@ -45,7 +45,7 @@ void SpriteAnimation::Play(int index)
 	{
 		if (m_animationSet.second[i] == index)
 		{
-			m_spritebatch.Draw(*m_dims, m_animationSet.first.GetTexCoords(index), m_animationSet.first.GetTexture().m_id, 0.0f, vec4(1.0f));
+			m_spritebatch.Draw(*m_dims, m_animationSet.first.GetTexCoords(index), m_animationSet.first.GetTexture().m_id, 0.0f, glm::vec4(1.0f));
 		}
 	}
 }

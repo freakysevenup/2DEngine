@@ -4,7 +4,7 @@ void Camera::Init(int screenWidth, int screenHeight)
 {
 	m_width = screenWidth;
 	m_height = screenHeight;
-	m_orthoMatrix = ortho(0.0f, float(m_width), 0.0f, float(m_height));
+	m_orthoMatrix = glm::ortho(0.0f, float(m_width), 0.0f, float(m_height));
 }
 
 void Camera::Update()
@@ -12,23 +12,23 @@ void Camera::Update()
 	if (m_matrixNeedsUpdate)
 	{
 		// Translate the Camera
-		vec3 translatedCamera(-m_position.x + m_width / 2.0f, -m_position.y + m_height / 2.0f, 0.0f);
-		m_viewMatrix = translate(m_orthoMatrix, translatedCamera);
+		glm::vec3 translatedCamera(-m_position.x + m_width / 2.0f, -m_position.y + m_height / 2.0f, 0.0f);
+		m_viewMatrix = glm::translate(m_orthoMatrix, translatedCamera);
 
 		// Scale the Camera
-		vec3 scaledCamera(m_scale.x, m_scale.y, 0.0f);
-		m_viewMatrix = scale(mat4(1.0f), scaledCamera) * m_viewMatrix;
+		glm::vec3 scaledCamera(m_scale.x, m_scale.y, 0.0f);
+		m_viewMatrix = glm::scale(glm::mat4(1.0f), scaledCamera) * m_viewMatrix;
 		m_matrixNeedsUpdate = false;
 	}
 }
 
-vec2 Camera::ConvertScreenToWorld(const vec2& screenCoords)
+glm::vec2 Camera::ConvertScreenToWorld(const glm::vec2& screenCoords)
 {
-	vec2 temp = screenCoords;
+	glm::vec2 temp = screenCoords;
 	// Invert the y axis
 	temp.y = m_height - temp.y;
 	// Put the center at zero
-	temp -= vec2(m_width / 2.0f, m_height / 2.0f);
+	temp -= glm::vec2(m_width / 2.0f, m_height / 2.0f);
 	// Scale the coordinates
 	temp /= m_scale;
 	// Translate the position
@@ -36,7 +36,7 @@ vec2 Camera::ConvertScreenToWorld(const vec2& screenCoords)
 	return temp;
 }
 
-bool Camera::CullFromView(const vec2& position, const vec2& dimensions)
+bool Camera::CullFromView(const glm::vec2& position, const glm::vec2& dimensions)
 {
 	glm::vec2 scaledScreenDimensions = glm::vec2(m_width, m_height) / m_scale;
 

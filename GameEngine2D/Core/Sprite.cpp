@@ -2,7 +2,7 @@
 #include "Vertex.h"
 #include "TextureResources.h"
 
-Sprite::Sprite(const vec2& pos, const vec2& scale, const std::string& filePath) :
+Sprite::Sprite(const glm::vec2& pos, const glm::vec2& scale, const std::string& filePath) :
 m_position(pos),
 m_scale(scale)
 {

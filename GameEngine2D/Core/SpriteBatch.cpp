@@ -6,7 +6,7 @@ Glyph::Glyph(
 	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
-	const vec4&colour) :
+	const glm::vec4&colour) :
 	texture_(textureID), zLayer_(zLayer)
 {
 	topLeft_.v_colour.c = colour;
@@ -31,7 +31,7 @@ Glyph::Glyph(
 	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
-	const vec4&colour,
+	const glm::vec4&colour,
 	float angle) :
 	texture_(textureID), zLayer_(zLayer)
 {
@@ -67,7 +67,7 @@ Glyph::Glyph(
 	angle = angle;
 }
 
-vec2 Glyph::RotatePoint(vec2 point, float angle)
+glm::vec2 Glyph::RotatePoint(glm::vec2 point, float angle)
 {
 	return glm::vec2(point.x * cos(angle) - point.y * sin(angle),
 		point.x * sin(angle) + point.y * cos(angle));
@@ -145,7 +145,7 @@ void SpriteBatch::Draw(
 	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
-	const vec4& colour)
+	const glm::vec4& colour)
 {
 	m_glyphs.emplace_back(destRect, uvRect, textureID, zLayer, colour);
 }
@@ -155,7 +155,7 @@ void SpriteBatch::Draw(
 	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
-	const vec4& colour,
+	const glm::vec4& colour,
 	float angle)
 {
 	m_glyphs.emplace_back(destRect, uvRect, textureID, zLayer, colour, angle);
@@ -166,8 +166,8 @@ void SpriteBatch::Draw(
 	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
-	const vec4& colour,
-	const vec2& direction)
+	const glm::vec4& colour,
+	const glm::vec2& direction)
 {
 	const glm::vec2 rightVector(1.0f, 0.0f);
 

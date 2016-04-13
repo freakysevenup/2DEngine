@@ -188,7 +188,7 @@ const bool InputManager::MouseMoved() const
 	return mouseMoved;
 }
 
-const vec2 InputManager::GetMousePosition() const
+const glm::vec2 InputManager::GetMousePosition() const
 {
 	return mousePos;
 }
@@ -203,7 +203,7 @@ void InputManager::SetCursor(bool visible) const
 
 }
 
-void InputManager::SetMousePosition(const vec2& pos) const
+void InputManager::SetMousePosition(const glm::vec2& pos) const
 {
 	SDL_WarpMouseInWindow(m_window->GetWindow(), (int)pos.x, (int)pos.y);
 }
@@ -241,7 +241,7 @@ const bool InputManager::ThumbLMoved() const
 	return thumbLMoved;
 }
 
-const vec2 InputManager::GetThumbLPosition() const
+const glm::vec2 InputManager::GetThumbLPosition() const
 {
 	return thumbLPos;
 }
@@ -251,7 +251,7 @@ const bool InputManager::ThumbRMoved() const
 	return thumbRMoved;
 }
 
-const vec2 InputManager::GetThumbRPosition() const
+const glm::vec2 InputManager::GetThumbRPosition() const
 {
 	return thumbRPos;
 }

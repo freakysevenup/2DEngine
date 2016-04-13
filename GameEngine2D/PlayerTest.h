@@ -9,10 +9,10 @@ public:
 	~PlayerTest();
 
 	void Draw(SpriteBatch& spriteBatch, GLuint textureID);
-	void SetPosition(vec2& pos) { m_position = pos; }
+	void SetPosition(glm::vec2& pos) { m_position = pos; }
 
 private:
 	GLuint m_textureID;
-	vec2 m_position;
+	glm::vec2 m_position;
 };
 

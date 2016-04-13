@@ -4,7 +4,6 @@
 #include <string>
 #include "InputManager.h"
 #include <glm\glm.hpp>
-using namespace glm;
 
 
 /// <summary>
@@ -62,7 +61,7 @@ public:
 	/// Gets the center position of the window.
 	/// </summary>
 	/// <returns>The center point of the window.</returns>
-	inline const vec2 GetCenter() const { return vec2((float)m_screenWidth / 2.0f, (float)m_screenHeight / 2.0f); }
+	inline const glm::vec2 GetCenter() const { return glm::vec2((float)m_screenWidth / 2.0f, (float)m_screenHeight / 2.0f); }
 	/// <summary>
 	/// Gets the name of the screen.
 	/// </summary>

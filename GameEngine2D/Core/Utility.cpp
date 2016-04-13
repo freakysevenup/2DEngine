@@ -35,7 +35,7 @@ std::vector<std::string> Utility::split(const std::string& s, char delim)
 	return elems;
 }
 
-float Utility::getMax(const vec2 & vec)
+float Utility::getMax(const glm::vec2 & vec)
 {
 	float Max = vec[0];
 
@@ -46,7 +46,7 @@ float Utility::getMax(const vec2 & vec)
 	return Max;
 }
 
-float Utility::getDistance(const vec2& point1, const vec2& point2)
+float Utility::getDistance(const glm::vec2& point1, const glm::vec2& point2)
 {
 	return sqrt(((point2.x - point1.x) * (point2.x - point1.x)) + ((point2.y - point1.y) * (point2.y - point1.y)));
 }

@@ -5,7 +5,6 @@
 #include <sstream>
 #include <iostream>
 #include <glm\glm.hpp>
-using namespace glm;
 
 class Shader
 {
@@ -34,23 +33,23 @@ public:
 	{
 		glUniform1fARB(glGetUniformLocation(this->m_program, uniformName.c_str()), value);
 	}
-	void SetUniform2fvARB(const std::string & uniformName, const vec2 & value)
+	void SetUniform2fvARB(const std::string & uniformName, const glm::vec2 & value)
 	{
 		glUniform2fvARB(glGetUniformLocation(this->m_program, uniformName.c_str()), 1, &value[0]);
 	}
-	void SetUniform3fvARB(const std::string & uniformName, const vec3 & value)
+	void SetUniform3fvARB(const std::string & uniformName, const glm::vec3 & value)
 	{
 		glUniform3fvARB(glGetUniformLocation(this->m_program, uniformName.c_str()), 1, &value[0]);
 	}
-	void SetUniform4fvARB(const std::string & uniformName, const vec4 & value)
+	void SetUniform4fvARB(const std::string & uniformName, const glm::vec4 & value)
 	{
 		glUniform4fvARB(glGetUniformLocation(this->m_program, uniformName.c_str()), 1, &value[0]);
 	}
-	void SetUniformMatrix3fvARB(const std::string & uniformName, const mat3 & value)
+	void SetUniformMatrix3fvARB(const std::string & uniformName, const glm::mat3 & value)
 	{
 		glUniformMatrix3fvARB(glGetUniformLocation(this->m_program, uniformName.c_str()), 1, GL_FALSE, &value[0][0]);
 	}
-	void SetUniformMatrix4fvARB(const std::string & uniformName, const mat4 & value)
+	void SetUniformMatrix4fvARB(const std::string & uniformName, const glm::mat4 & value)
 	{
 		glUniformMatrix4fvARB(glGetUniformLocation(this->m_program, uniformName.c_str()), 1, GL_FALSE, &value[0][0]);
 	}

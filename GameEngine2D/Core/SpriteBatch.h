@@ -4,7 +4,6 @@
 #include <glew\glew.h>
 #include "Rectangle.h"
 #include <glm\glm.hpp>
-using namespace glm;
 
 enum GlyphSort
 {
@@ -24,14 +23,14 @@ public:
 		Rectangle& uvRect,
 		GLuint TextureID, 
 		float zLayer, 
-		const vec4&colour);
+		const glm::vec4&colour);
 
 	Glyph(
 		Rectangle& destRect,
 		Rectangle& uvRect,
 		GLuint TextureID, 
 		float zLayer, 
-		const vec4&colour, 
+		const glm::vec4&colour,
 		float angle);
 
 	Vertex topLeft_;
@@ -45,7 +44,7 @@ public:
 
 private:
 
-	vec2 RotatePoint(vec2 point, float angle);
+	glm::vec2 RotatePoint(glm::vec2 point, float angle);
 };
 
 class RenderBatch
@@ -80,14 +79,14 @@ public:
 		Rectangle& uvRect,
 		GLuint textureID, 
 		float zLayer, 
-		const vec4& colour);
+		const glm::vec4& colour);
 
 	void Draw(
 		Rectangle& destRect,
 		Rectangle& uvRect,
 		GLuint textureID, 
 		float zLayer, 
-		const vec4& colour, 
+		const glm::vec4& colour,
 		float angle);
 
 	void Draw(
@@ -95,8 +94,8 @@ public:
 		Rectangle& uvRect,
 		GLuint textureID, 
 		float zLayer, 
-		const vec4& colour, 
-		const vec2& direction);
+		const glm::vec4& colour,
+		const glm::vec2& direction);
 
 	void Render();
 

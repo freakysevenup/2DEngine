@@ -6,6 +6,7 @@
 #include ".\Core\Texture.h"
 #include ".\Core\Shader.h"
 #include "PlayerTest.h"
+#include <Box2D\Box2D.h>
 
 
 class MainGame : public IScene
@@ -38,5 +39,6 @@ public:
 	float m_counter = 0.0f;
 	PlayerTest * m_player;
 	Display * m_window;
+	b2World * m_world;
 };
 
