@@ -125,7 +125,3 @@ void Shader::checkCompileErrors(GLuint shader, const std::string& type)
 	}
 }
 
-void Shader::Begin()
-{
-	glUseProgram(m_program);
-}

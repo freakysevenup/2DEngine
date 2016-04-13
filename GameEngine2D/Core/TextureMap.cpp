@@ -39,6 +39,9 @@ Texture TextureMap::LoadPNG(const std::string& name)
 
 	texture.m_width = width;
 	texture.m_height = height;
+
+	ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_INFO, name + " Texture was loaded.");
+
 	return texture;
 }
 

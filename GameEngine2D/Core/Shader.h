@@ -23,7 +23,8 @@ public:
 	void Init(const GLchar* vertexPath, const GLchar* fragmentPath, const GLchar* geometryPath = nullptr);
 	void checkCompileErrors(GLuint shader, const std::string& type);
 
-	void Begin();
+	void Begin() { glUseProgram(m_program); }
+	void End() { glUseProgram(0);  }
 
 	void SetUniformiARB(const std::string & uniformName, const GLint & value)
 	{
