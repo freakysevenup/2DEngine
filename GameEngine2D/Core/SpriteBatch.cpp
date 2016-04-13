@@ -73,9 +73,16 @@ vec2 Glyph::RotatePoint(vec2 point, float angle)
 		point.x * sin(angle) + point.y * cos(angle));
 }
 
-SpriteBatch::SpriteBatch()
+
+void SpriteBatch::Init()
 {
-	if (m_VAO == GL_ZERO)
+	CreateVertexArray();
+}
+
+void SpriteBatch::CreateVertexArray()
+{
+	// Generate the VAO if it isn't already generated
+	if (m_VAO == 0)
 	{
 		glGenVertexArrays(1, &m_VAO);
 	}
@@ -84,28 +91,30 @@ SpriteBatch::SpriteBatch()
 	glBindVertexArray(m_VAO);
 
 	// Generate the VBO if it isn't already generated
-	if (m_VBO == GL_ZERO)
+	if (m_VBO == 0)
 	{
-		glGenBuffers(NUM_VBOS, m_VBO);
+		glGenBuffers(1, &m_VBO);
 	}
 
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+
+	//tell openGL that we want to use the first
+	//attribute array. We only need one array right
+	//now since we are oly using position
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+
 	//This is the position attribute pointer
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO[POSITION]);
-	glEnableVertexAttribArray(POSITION);
-	glVertexAttribPointer(POSITION, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, v_position));
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, v_position));
 
-	//This is the colour attribute pointer
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO[COLOUR]);
-	glEnableVertexAttribArray(COLOUR);
-	glVertexAttribPointer(COLOUR, 4, GL_FLOAT, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, v_colour));
+	//This is the color attribute pointer
+	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, v_colour));
 
-	//This is the Texture Coordinate attribute pointer
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO[TEXCOORDS]);
-	glEnableVertexAttribArray(TEXCOORDS);
-	glVertexAttribPointer(TEXCOORDS, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, v_texCoords));
+	//This is the UV attribute pointer
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, v_texCoords));
 
 	glBindVertexArray(0);
-
 }
 
 void SpriteBatch::Begin(GlyphSort sortType /* = GlyphSort::TEXTURE */)
@@ -236,7 +245,7 @@ void SpriteBatch::CreateRenderBatches()
 	}
 
 	// Bind our VBO
-	glBindBuffer(GL_ARRAY_BUFFER, *m_VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 
 	// Orphan the buffer to save time in processing 
 	// (tell the computer you don't want to wait for it to clear 

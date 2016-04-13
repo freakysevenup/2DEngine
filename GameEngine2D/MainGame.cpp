@@ -1,5 +1,6 @@
 #include "MainGame.h"
 #include <SDL2\SDL.h>
+#include ".\Core\TextureResources.h"
 
 int MainGame::Next() const
 {
@@ -18,21 +19,20 @@ void MainGame::Initialize()
 
 void MainGame::Dispose()
 {
-	delete m_spritebatch;
-	delete m_textureLoader;
 }
 
 void MainGame::OnEntry()
 {
-	m_textureLoader = new TextureResources();
-	m_tempTexture = *m_textureLoader->Load("./Assets/Textures/temp.png");
 
-	m_spritebatch = new SpriteBatch();
+	m_spritebatch.Init();
 	m_shaderProgram = new Shader();
 	m_shaderProgram->Init("./Assets/Shaders/basicShader.vertGLSL", "./Assets/Shaders/basicShader.fragGLSL");
 
-	m_cam.Init(1920, 1080);
-	m_cam.SetScale(vec2(32.0f, 32.0f));
+	m_player = new PlayerTest();
+	m_player->SetPosition(vec2(0.0f, 0.0f));
+
+	m_cam.Init(1000, 1000);
+	m_cam.SetScale(vec2(2.0f, 2.0f));
 }
 
 void MainGame::OnExit()
@@ -42,17 +42,26 @@ void MainGame::OnExit()
 
 void MainGame::Render()
 {
+	// Set the base depth to 1.0
+	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	m_shaderProgram->SetUniformiARB("mySampler", 0);
 	m_shaderProgram->SetUniformMatrix4fvARB("P", m_cam.GetViewMatrix());
 
 	m_shaderProgram->Begin();
-	m_spritebatch->Begin();
+
+	// Draw code goes here
+
+	m_spritebatch.Begin();
 
 	// Draw stuff in here
 
-	m_spritebatch->End();
+	m_player->Draw(m_spritebatch, TextureResources::GetTexture("./Assets/Textures/pirate.png").m_id);
+
+	m_spritebatch.End();
+
+	m_spritebatch.Render();
 
 	m_counter += 0.001f;
 }

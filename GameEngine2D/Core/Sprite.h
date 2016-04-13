@@ -1,6 +1,5 @@
 #pragma once
 #include "Texture.h"
-#include "TextureResources.h"
 #include <glew\glew.h>
 #include <string>
 #include <glm\glm.hpp>
@@ -18,6 +17,5 @@ private:
 	vec2 m_scale;
 	GLuint m_VBO;
 	Texture m_texture;
-	TextureResources * m_tResources;
 };
 

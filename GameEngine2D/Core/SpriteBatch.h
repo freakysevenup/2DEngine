@@ -6,14 +6,6 @@
 #include <glm\glm.hpp>
 using namespace glm;
 
-enum VBO
-{
-	POSITION,
-	COLOUR,
-	TEXCOORDS,
-	NUM_VBOS
-};
-
 enum GlyphSort
 {
 	NONE,
@@ -75,11 +67,13 @@ public:
 class SpriteBatch
 {
 public:
-	SpriteBatch();
+	SpriteBatch() { }
 	~SpriteBatch() { }
 
 	void Begin(GlyphSort sortType = GlyphSort::TEXTURE);
 	void End();
+	void Init();
+	void CreateVertexArray();
 
 	void Draw(
 		Rectangle& destRect,
@@ -115,7 +109,7 @@ private:
 	static bool CompareBackToFront(Glyph * a, Glyph * b);
 	static bool CompareTexture(Glyph * a, Glyph * b);
 
-	GLuint m_VBO[NUM_VBOS], m_VAO;
+	GLuint m_VBO, m_VAO;
 	GlyphSort m_sortType;
 
 	std::vector<Glyph> m_glyphs;

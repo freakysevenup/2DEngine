@@ -1,12 +1,12 @@
 #include "Sprite.h"
 #include "Vertex.h"
+#include "TextureResources.h"
 
 Sprite::Sprite(const vec2& pos, const vec2& scale, const std::string& filePath) :
 m_position(pos),
 m_scale(scale)
 {
-	m_tResources = new TextureResources();
-	m_texture = *m_tResources->Get(filePath);
+	m_texture = TextureResources::GetTexture(filePath);
 
 	if (m_VBO == 0)
 	{
@@ -48,7 +48,6 @@ Sprite::~Sprite()
 	{
 		glDeleteBuffers(1, &m_VBO);
 	}
-	delete m_tResources;
 }
 
 void Sprite::Draw()

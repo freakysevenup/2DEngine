@@ -28,7 +28,6 @@ void IGame::Run()
 		{
 			Render();
 			m_fps = fpsLimiter.End();
-			m_window->ClearScreen(1.0f, 1.0f, 1.0f, 1.0f);
 			m_window->SwapBuffers();
 		}
 	}

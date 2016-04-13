@@ -4,8 +4,8 @@
 #include ".\Core\Camera.h"
 #include ".\Core\Spritebatch.h"
 #include ".\Core\Texture.h"
-#include ".\Core\TextureResources.h"
 #include ".\Core\Shader.h"
+#include "PlayerTest.h"
 
 
 class MainGame : public IScene
@@ -32,10 +32,9 @@ public:
 	virtual void ProcessInput() override;
 
 	Camera m_cam;
-	SpriteBatch * m_spritebatch;
-	Texture m_tempTexture;
-	TextureResources * m_textureLoader;
+	SpriteBatch m_spritebatch;
 	Shader * m_shaderProgram;
 	float m_counter = 0.0f;
+	PlayerTest * m_player;
 };
 
