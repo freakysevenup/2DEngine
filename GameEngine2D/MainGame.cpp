@@ -2,6 +2,8 @@
 #include <SDL2\SDL.h>
 #include ".\Core\TextureResources.h"
 
+const b2Vec2 GRAVITY = b2Vec2(0.0f, -9.80f);
+
 int MainGame::Next() const
 {
 	return NO_LOADED_SCENE;
@@ -23,7 +25,7 @@ void MainGame::Dispose()
 
 void MainGame::OnEntry()
 {
-	m_world = new b2World(b2Vec2(0.0f, -9.80f));
+	m_world = new b2World(GRAVITY);
 	m_spritebatch.Init();
 	m_shaderProgram = new Shader();
 	m_shaderProgram->Init("Assets/Shaders/basicShader.vertGLSL", "Assets/Shaders/basicShader.fragGLSL");
