@@ -20,12 +20,12 @@ float FPSLimiter::End()
 {
 	CalculateFPS();
 
-	float frameTicks = SDL_GetTicks() - m_startTicks;
+	float frameTicks = float(SDL_GetTicks() - m_startTicks);
 
 	// limit the fps to the max fps
 	if (1000.0f / m_maxFPS > frameTicks)
 	{
-		SDL_Delay(1000.0f / m_maxFPS - frameTicks);
+		SDL_Delay(Uint32(1000.0f / m_maxFPS - frameTicks));
 	}
 
 	return m_fps;
@@ -40,10 +40,10 @@ void FPSLimiter::CalculateFPS()
 	static float frameTimes[NUM_SAMPLES];
 	static int currentFrame = 0;
 
-	static float prevTicks = SDL_GetTicks();
+	static float prevTicks = float(SDL_GetTicks());
 	float currentTicks;
 
-	currentTicks = SDL_GetTicks();
+	currentTicks = float(SDL_GetTicks());
 
 	m_frameTime = currentTicks - prevTicks;
 
