@@ -49,11 +49,14 @@ void MainGame::Render()
 	// Set the base depth to 1.0
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
+
+	m_shaderProgram->Begin();
 	glActiveTexture(GL_TEXTURE0);
 
 	m_shaderProgram->SetUniformiARB("mySampler", 0);
 	m_shaderProgram->SetUniformMatrix4fvARB("P", m_cam.GetViewMatrix());
-	m_shaderProgram->Begin();
+
 	m_spritebatch.Begin();
 
 	// Draw stuff under here

@@ -25,33 +25,33 @@ public:
 	TexCoords v_texCoords;
 	Colour v_colour;
 
-	void setPosition(float x, float y) 
+	void SetPosition(float x, float y) 
 	{
 		v_position.p = glm::vec2(x, y);
 	}
-	void setPosition(const glm::vec2& param)
+	void SetPosition(const glm::vec2& param)
 	{
 		v_position.p = param;
 	}
 
-	void setColor(float r, float g, float b, float a)
+	void SetColour(float r, float g, float b, float a)
 	{
 		v_colour.c = glm::vec4(r, g, b, a);
 	}
-	void setColor(const ColourRGB8& colour) 
+	void SetColour(const ColourRGB8& colour) 
 	{
 		v_colour.c = colour.m_colour;
 	}
-	void setColor(const glm::vec4& colour)
+	void SetColour(const glm::vec4& colour)
 	{
 		v_colour.c = colour;
 	}
 
-	void setUV(float u, float v)
+	void SetUV(float u, float v)
 	{
 		v_texCoords.t = glm::vec2(u, v);
 	}
-	void setUV(const glm::vec2& param)
+	void SetUV(const glm::vec2& param)
 	{
 		v_texCoords.t = param;
 	}

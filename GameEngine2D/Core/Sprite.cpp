@@ -16,24 +16,24 @@ m_scale(scale)
 	Vertex vertexData[6];
 
 	//first Triangle of the square
-	vertexData[0].setPosition(m_position.x + m_scale.x, m_position.y + m_scale.y);
-	vertexData[0].setUV(1.0f, 1.0f);
+	vertexData[0].SetPosition(m_position.x + m_scale.x, m_position.y + m_scale.y);
+	vertexData[0].SetUV(1.0f, 1.0f);
 
-	vertexData[1].setPosition(m_position.x, m_position.y + m_scale.y);
-	vertexData[1].setUV(0.0f, 1.0f);
+	vertexData[1].SetPosition(m_position.x, m_position.y + m_scale.y);
+	vertexData[1].SetUV(0.0f, 1.0f);
 
-	vertexData[2].setPosition(m_position.x, m_position.y);
-	vertexData[2].setUV(0.0f, 0.0f);
+	vertexData[2].SetPosition(m_position.x, m_position.y);
+	vertexData[2].SetUV(0.0f, 0.0f);
 
 	//second Triangle of the square
-	vertexData[3].setPosition(m_position.x, m_position.y);
-	vertexData[3].setUV(0.0f, 0.0f);
+	vertexData[3].SetPosition(m_position.x, m_position.y);
+	vertexData[3].SetUV(0.0f, 0.0f);
 
-	vertexData[4].setPosition(m_position.x + m_scale.x, m_position.y);
-	vertexData[4].setUV(1.0f, 0.0f);
+	vertexData[4].SetPosition(m_position.x + m_scale.x, m_position.y);
+	vertexData[4].SetUV(1.0f, 0.0f);
 
-	vertexData[5].setPosition(m_position.x + m_scale.x, m_position.y + m_scale.y);
-	vertexData[5].setUV(1.0f, 1.0f);
+	vertexData[5].SetPosition(m_position.x + m_scale.x, m_position.y + m_scale.y);
+	vertexData[5].SetUV(1.0f, 1.0f);
 
 
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);

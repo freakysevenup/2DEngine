@@ -9,21 +9,21 @@ Glyph::Glyph(
 	const glm::vec4&colour) :
 	texture_(textureID), zLayer_(zLayer)
 {
-	topLeft_.v_colour.c = colour;
-	topLeft_.setPosition(destRect.GetX(), destRect.GetY() + destRect.GetHeight());
-	topLeft_.setUV(uvRect.GetX(), uvRect.GetY() + uvRect.GetHeight());
+	topLeft_.SetColour(colour);
+	topLeft_.SetPosition(destRect.GetX(), destRect.GetY() + destRect.GetHeight());
+	topLeft_.SetUV(uvRect.GetX(), uvRect.GetY() + uvRect.GetHeight());
 
-	bottomLeft_.v_colour.c = colour;
-	bottomLeft_.setPosition(destRect.GetX(), destRect.GetY());
-	bottomLeft_.setUV(uvRect.GetX(), uvRect.GetY());
+	bottomLeft_.SetColour(colour);
+	bottomLeft_.SetPosition(destRect.GetX(), destRect.GetY());
+	bottomLeft_.SetUV(uvRect.GetX(), uvRect.GetY());
 
-	bottomRight_.v_colour.c = colour;
-	bottomRight_.setPosition(destRect.GetX() + destRect.GetWidth(), destRect.GetY());
-	bottomRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY());
+	bottomRight_.SetColour(colour);
+	bottomRight_.SetPosition(destRect.GetX() + destRect.GetWidth(), destRect.GetY());
+	bottomRight_.SetUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY());
 
-	topRight_.v_colour.c = colour;
-	topRight_.setPosition(destRect.GetX() + destRect.GetWidth(), destRect.GetY() + destRect.GetHeight());
-	topRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY() + uvRect.GetHeight());
+	topRight_.SetColour(colour);
+	topRight_.SetPosition(destRect.GetX() + destRect.GetWidth(), destRect.GetY() + destRect.GetHeight());
+	topRight_.SetUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY() + uvRect.GetHeight());
 }
 
 Glyph::Glyph(
@@ -49,22 +49,22 @@ Glyph::Glyph(
 	br = RotatePoint(br, angle) + halfDimensions;
 	tr = RotatePoint(tr, angle) + halfDimensions;
 
-	topLeft_.v_colour.c = colour;
-	topLeft_.setPosition(destRect.GetX() + tl.x, destRect.GetY() + tl.y);
-	topLeft_.setUV(uvRect.GetX(), uvRect.GetY() + uvRect.GetHeight());
+	topLeft_.SetColour(colour);
+	topLeft_.SetPosition(destRect.GetX() + tl.x, destRect.GetY() + tl.y);
+	topLeft_.SetUV(uvRect.GetX(), uvRect.GetY() + uvRect.GetHeight());
 
-	bottomLeft_.v_colour.c = colour;
-	bottomLeft_.setPosition(destRect.GetX() + bl.x, destRect.GetY() + bl.y);
-	bottomLeft_.setUV(uvRect.GetX(), uvRect.GetY());
+	bottomLeft_.SetColour(colour);
+	bottomLeft_.SetPosition(destRect.GetX() + bl.x, destRect.GetY() + bl.y);
+	bottomLeft_.SetUV(uvRect.GetX(), uvRect.GetY());
 
-	bottomRight_.v_colour.c = colour;
-	bottomRight_.setPosition(destRect.GetX() + br.x, destRect.GetY() + br.y);
-	bottomRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY());
+	bottomRight_.SetColour(colour);
+	bottomRight_.SetPosition(destRect.GetX() + br.x, destRect.GetY() + br.y);
+	bottomRight_.SetUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY());
 
-	topRight_.v_colour.c = colour;
-	topRight_.setPosition(destRect.GetX() + tr.x, destRect.GetY() + tr.y);
-	topRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY() + uvRect.GetHeight());
-	angle = angle;
+	topRight_.SetColour(colour);
+	topRight_.SetPosition(destRect.GetX() + tr.x, destRect.GetY() + tr.y);
+	topRight_.SetUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY() + uvRect.GetHeight());
+	angle_ = angle;
 }
 
 glm::vec2 Glyph::RotatePoint(glm::vec2 point, float angle)

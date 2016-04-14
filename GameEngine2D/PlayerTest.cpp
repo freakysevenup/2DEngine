@@ -7,7 +7,7 @@ PlayerTest::~PlayerTest() {}
 
 void PlayerTest::Draw(SpriteBatch& spriteBatch)
 {
-	Rectangle destRect(m_position.x, m_position.y, 1024.0f, 1024.0f);
+	Rectangle destRect(m_position.x, m_position.y, m_texture.m_width, m_texture.m_height);
 
 	Rectangle UV_RECT(0.0f, 0.0f, 1.0f, 1.0f);
 	float DEPTH = 0.0f;

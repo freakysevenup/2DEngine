@@ -26,8 +26,8 @@ public:
 	inline glm::vec2 GetScale() const { return m_scale; }
 	inline glm::mat4 GetViewMatrix() const { return m_viewMatrix; }
 
-	void SetPosition(const glm::vec2& newPosition) { m_position = newPosition; }
-	void SetScale(const glm::vec2& newScale) { m_scale = newScale; }
+	void SetPosition(const glm::vec2& newPosition) { m_position = newPosition; m_matrixNeedsUpdate = true; }
+	void SetScale(const glm::vec2& newScale) { m_scale = newScale; m_matrixNeedsUpdate = true; }
 
 private:
 	int m_width, m_height;
