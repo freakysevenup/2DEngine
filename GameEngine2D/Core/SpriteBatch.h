@@ -66,7 +66,9 @@ public:
 class SpriteBatch
 {
 public:
-	SpriteBatch() { }
+	SpriteBatch() :
+	m_VBO(0),
+	m_VAO(0) { }
 	~SpriteBatch() { }
 
 	void Begin(GlyphSort sortType = GlyphSort::TEXTURE);

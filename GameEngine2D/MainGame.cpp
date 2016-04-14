@@ -49,7 +49,7 @@ void MainGame::Render()
 	// Set the base depth to 1.0
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
 	m_shaderProgram->Begin();
 	glActiveTexture(GL_TEXTURE0);

@@ -207,7 +207,6 @@ void SpriteBatch::CreateRenderBatches()
 		return;
 	}
 
-
 	int offset = 0; // current offset
 	int cv = 0; // Current Vertex
 
