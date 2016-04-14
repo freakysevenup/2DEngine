@@ -29,15 +29,17 @@ void MainGame::OnEntry()
 	m_shaderProgram->Init("Assets/Shaders/basicShader.vertGLSL", "Assets/Shaders/basicShader.fragGLSL");
 
 	m_player = new PlayerTest();
-	m_player->SetPosition(glm::vec2(m_window->GetScreenWidth() / 2.0f, m_window->GetScreenHeight() / 2.0f));
+	m_player->SetPosition(glm::vec2(0.0f, 0.0f));
+	m_player->SetTexture(TextureResources::GetTexture("Assets/Textures/pirate.png"));
 
 	m_cam.Init(m_window->GetScreenWidth(), m_window->GetScreenHeight());
-	m_cam.SetScale(glm::vec2(2.0f, 2.0f));
+	m_cam.SetPosition(glm::vec2(m_player->GetPosition().x + m_player->GetWidth() / 2.0f, m_player->GetPosition().y + m_player->GetHeight() / 2.0f));
+	m_cam.SetScale(glm::vec2(1.0f / 4.0f));
 }
 
 void MainGame::OnExit()
 {
-
+	
 }
 
 void MainGame::Render()
@@ -54,13 +56,12 @@ void MainGame::Render()
 
 	// Draw stuff under here
 
-	m_player->Draw(m_spritebatch, TextureResources::GetTexture("Assets/Textures/pirate.png").m_id);
+	m_player->Draw(m_spritebatch);
 
 	// Draw stuff above here
 
 	m_spritebatch.End();
 	m_spritebatch.Render();
-	m_shaderProgram->End();
 }
 
 void MainGame::Update()
