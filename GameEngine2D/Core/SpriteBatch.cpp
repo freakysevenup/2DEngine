@@ -2,40 +2,40 @@
 #include <algorithm>
 
 Glyph::Glyph(
-	const vec4& destRect,
-	const vec4& uvRect,
+	Rectangle& destRect,
+	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
-	const vec4&colour) :
+	const glm::vec4&colour) :
 	texture_(textureID), zLayer_(zLayer)
 {
 	topLeft_.v_colour.c = colour;
-	topLeft_.setPosition(destRect.x, destRect.y + destRect.w);
-	topLeft_.setUV(uvRect.x, uvRect.y + uvRect.w);
+	topLeft_.setPosition(destRect.GetX(), destRect.GetY() + destRect.GetHeight());
+	topLeft_.setUV(uvRect.GetX(), uvRect.GetY() + uvRect.GetHeight());
 
 	bottomLeft_.v_colour.c = colour;
-	bottomLeft_.setPosition(destRect.x, destRect.y);
-	bottomLeft_.setUV(uvRect.x, uvRect.y);
+	bottomLeft_.setPosition(destRect.GetX(), destRect.GetY());
+	bottomLeft_.setUV(uvRect.GetX(), uvRect.GetY());
 
 	bottomRight_.v_colour.c = colour;
-	bottomRight_.setPosition(destRect.x + destRect.z, destRect.y);
-	bottomRight_.setUV(uvRect.x + uvRect.z, uvRect.y);
+	bottomRight_.setPosition(destRect.GetX() + destRect.GetWidth(), destRect.GetY());
+	bottomRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY());
 
 	topRight_.v_colour.c = colour;
-	topRight_.setPosition(destRect.x + destRect.z, destRect.y + destRect.w);
-	topRight_.setUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
+	topRight_.setPosition(destRect.GetX() + destRect.GetWidth(), destRect.GetY() + destRect.GetHeight());
+	topRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY() + uvRect.GetHeight());
 }
 
 Glyph::Glyph(
-	const vec4& destRect,
-	const vec4& uvRect,
+	Rectangle& destRect,
+	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
-	const vec4&colour,
+	const glm::vec4&colour,
 	float angle) :
 	texture_(textureID), zLayer_(zLayer)
 {
-	glm::vec2 halfDimensions(destRect.z / 2.0f, destRect.w / 2.0f);
+	glm::vec2 halfDimensions(destRect.GetWidth() / 2.0f, destRect.GetHeight() / 2.0f);
 
 	// Get points centered at origin
 	glm::vec2 tl(-halfDimensions.x, halfDimensions.y);
@@ -50,32 +50,39 @@ Glyph::Glyph(
 	tr = RotatePoint(tr, angle) + halfDimensions;
 
 	topLeft_.v_colour.c = colour;
-	topLeft_.setPosition(destRect.x + tl.x, destRect.y + tl.y);
-	topLeft_.setUV(uvRect.x, uvRect.y + uvRect.w);
+	topLeft_.setPosition(destRect.GetX() + tl.x, destRect.GetY() + tl.y);
+	topLeft_.setUV(uvRect.GetX(), uvRect.GetY() + uvRect.GetHeight());
 
 	bottomLeft_.v_colour.c = colour;
-	bottomLeft_.setPosition(destRect.x + bl.x, destRect.y + bl.y);
-	bottomLeft_.setUV(uvRect.x, uvRect.y);
+	bottomLeft_.setPosition(destRect.GetX() + bl.x, destRect.GetY() + bl.y);
+	bottomLeft_.setUV(uvRect.GetX(), uvRect.GetY());
 
 	bottomRight_.v_colour.c = colour;
-	bottomRight_.setPosition(destRect.x + br.x, destRect.y + br.y);
-	bottomRight_.setUV(uvRect.x + uvRect.z, uvRect.y);
+	bottomRight_.setPosition(destRect.GetX() + br.x, destRect.GetY() + br.y);
+	bottomRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY());
 
 	topRight_.v_colour.c = colour;
-	topRight_.setPosition(destRect.x + tr.x, destRect.y + tr.y);
-	topRight_.setUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
+	topRight_.setPosition(destRect.GetX() + tr.x, destRect.GetY() + tr.y);
+	topRight_.setUV(uvRect.GetX() + uvRect.GetWidth(), uvRect.GetY() + uvRect.GetHeight());
 	angle = angle;
 }
 
-vec2 Glyph::RotatePoint(vec2 point, float angle)
+glm::vec2 Glyph::RotatePoint(glm::vec2 point, float angle)
 {
 	return glm::vec2(point.x * cos(angle) - point.y * sin(angle),
 		point.x * sin(angle) + point.y * cos(angle));
 }
 
-SpriteBatch::SpriteBatch()
+
+void SpriteBatch::Init()
 {
-	if (m_VAO == GL_ZERO)
+	CreateVertexArray();
+}
+
+void SpriteBatch::CreateVertexArray()
+{
+	// Generate the VAO if it isn't already generated
+	if (m_VAO == 0)
 	{
 		glGenVertexArrays(1, &m_VAO);
 	}
@@ -84,28 +91,30 @@ SpriteBatch::SpriteBatch()
 	glBindVertexArray(m_VAO);
 
 	// Generate the VBO if it isn't already generated
-	if (m_VBO == GL_ZERO)
+	if (m_VBO == 0)
 	{
-		glGenBuffers(NUM_VBOS, m_VBO);
+		glGenBuffers(1, &m_VBO);
 	}
 
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+
+	//tell openGL that we want to use the first
+	//attribute array. We only need one array right
+	//now since we are oly using position
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+
 	//This is the position attribute pointer
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO[POSITION]);
-	glEnableVertexAttribArray(POSITION);
-	glVertexAttribPointer(POSITION, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, v_position));
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, v_position));
 
-	//This is the colour attribute pointer
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO[COLOUR]);
-	glEnableVertexAttribArray(COLOUR);
-	glVertexAttribPointer(COLOUR, 4, GL_FLOAT, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, v_colour));
+	//This is the color attribute pointer
+	glVertexAttribPointer(1, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Vertex), (void*)offsetof(Vertex, v_colour));
 
-	//This is the Texture Coordinate attribute pointer
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO[TEXCOORDS]);
-	glEnableVertexAttribArray(TEXCOORDS);
-	glVertexAttribPointer(TEXCOORDS, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, v_texCoords));
+	//This is the UV attribute pointer
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, v_texCoords));
 
 	glBindVertexArray(0);
-
 }
 
 void SpriteBatch::Begin(GlyphSort sortType /* = GlyphSort::TEXTURE */)
@@ -132,33 +141,33 @@ void SpriteBatch::End()
 }
 
 void SpriteBatch::Draw(
-	const vec4& destRect,
-	const vec4& uvRect,
+	Rectangle& destRect,
+	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
-	const vec4& colour)
+	const glm::vec4& colour)
 {
 	m_glyphs.emplace_back(destRect, uvRect, textureID, zLayer, colour);
 }
 
 void SpriteBatch::Draw(
-	const vec4& destRect,
-	const vec4& uvRect,
+	Rectangle& destRect,
+	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
-	const vec4& colour,
+	const glm::vec4& colour,
 	float angle)
 {
 	m_glyphs.emplace_back(destRect, uvRect, textureID, zLayer, colour, angle);
 }
 
 void SpriteBatch::Draw(
-	const vec4& destRect,
-	const vec4& uvRect,
+	Rectangle& destRect,
+	Rectangle& uvRect,
 	GLuint textureID,
 	float zLayer,
-	const vec4& colour,
-	const vec2& direction)
+	const glm::vec4& colour,
+	const glm::vec2& direction)
 {
 	const glm::vec2 rightVector(1.0f, 0.0f);
 
@@ -236,7 +245,7 @@ void SpriteBatch::CreateRenderBatches()
 	}
 
 	// Bind our VBO
-	glBindBuffer(GL_ARRAY_BUFFER, *m_VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 
 	// Orphan the buffer to save time in processing 
 	// (tell the computer you don't want to wait for it to clear 

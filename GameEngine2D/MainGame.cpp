@@ -1,5 +1,8 @@
 #include "MainGame.h"
 #include <SDL2\SDL.h>
+#include ".\Core\TextureResources.h"
+
+const b2Vec2 GRAVITY = b2Vec2(0.0f, -9.80f);
 
 int MainGame::Next() const
 {
@@ -18,43 +21,49 @@ void MainGame::Initialize()
 
 void MainGame::Dispose()
 {
-	delete m_spritebatch;
-	delete m_textureLoader;
 }
 
 void MainGame::OnEntry()
 {
-	m_textureLoader = new TextureResources();
-	m_tempTexture = *m_textureLoader->Load("./Assets/Textures/temp.png");
-
-	m_spritebatch = new SpriteBatch();
+	m_world = new b2World(GRAVITY);
+	m_spritebatch.Init();
 	m_shaderProgram = new Shader();
-	m_shaderProgram->Init("./Assets/Shaders/basicShader.vertGLSL", "./Assets/Shaders/basicShader.fragGLSL");
+	m_shaderProgram->Init("Assets/Shaders/basicShader.vertGLSL", "Assets/Shaders/basicShader.fragGLSL");
 
-	m_cam.Init(1920, 1080);
-	m_cam.SetScale(vec2(32.0f, 32.0f));
+	m_player = new PlayerTest();
+	m_player->SetPosition(glm::vec2(0.0f, 0.0f));
+	m_player->SetTexture(TextureResources::GetTexture("Assets/Textures/pirate.png"));
+
+	m_cam.Init(m_window->GetScreenWidth(), m_window->GetScreenHeight());
+	m_cam.SetPosition(glm::vec2(m_player->GetPosition().x + m_player->GetWidth() / 2.0f, m_player->GetPosition().y + m_player->GetHeight() / 2.0f));
+	m_cam.SetScale(glm::vec2(1.0f / 4.0f));
 }
 
 void MainGame::OnExit()
 {
-	// Reset variables here that should be zeroed out if you leave the scene
+	
 }
 
 void MainGame::Render()
 {
+	// Set the base depth to 1.0
+	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glActiveTexture(GL_TEXTURE0);
 
 	m_shaderProgram->SetUniformiARB("mySampler", 0);
 	m_shaderProgram->SetUniformMatrix4fvARB("P", m_cam.GetViewMatrix());
-
 	m_shaderProgram->Begin();
-	m_spritebatch->Begin();
+	m_spritebatch.Begin();
 
-	// Draw stuff in here
+	// Draw stuff under here
 
-	m_spritebatch->End();
+	m_player->Draw(m_spritebatch);
 
-	m_counter += 0.001f;
+	// Draw stuff above here
+
+	m_spritebatch.End();
+	m_spritebatch.Render();
 }
 
 void MainGame::Update()

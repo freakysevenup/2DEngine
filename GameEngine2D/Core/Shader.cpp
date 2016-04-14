@@ -80,8 +80,8 @@ void Shader::Init(const GLchar* vertexPath, const GLchar* fragmentPath, const GL
 	}
 
 	glBindAttribLocation(m_program, 0, "position");
-	glBindAttribLocation(m_program, 0, "normal");
-	glBindAttribLocation(m_program, 0, "texCoords");
+	glBindAttribLocation(m_program, 1, "colour");
+	glBindAttribLocation(m_program, 2, "texCoords");
 
 	// Shader Program
 	m_program = glCreateProgram();
@@ -125,7 +125,3 @@ void Shader::checkCompileErrors(GLuint shader, const std::string& type)
 	}
 }
 
-void Shader::Begin()
-{
-	glUseProgram(m_program);
-}

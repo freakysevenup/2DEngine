@@ -2,16 +2,8 @@
 #include "Vertex.h"
 #include <vector>
 #include <glew\glew.h>
+#include "Rectangle.h"
 #include <glm\glm.hpp>
-using namespace glm;
-
-enum VBO
-{
-	POSITION,
-	COLOUR,
-	TEXCOORDS,
-	NUM_VBOS
-};
 
 enum GlyphSort
 {
@@ -27,18 +19,18 @@ public:
 
 	Glyph() {}
 	Glyph(
-		const vec4& destRect, 
-		const vec4& uvRect, 
+		Rectangle& destRect,
+		Rectangle& uvRect,
 		GLuint TextureID, 
 		float zLayer, 
-		const vec4&colour);
+		const glm::vec4&colour);
 
 	Glyph(
-		const vec4& destRect, 
-		const vec4& uvRect, 
+		Rectangle& destRect,
+		Rectangle& uvRect,
 		GLuint TextureID, 
 		float zLayer, 
-		const vec4&colour, 
+		const glm::vec4&colour,
 		float angle);
 
 	Vertex topLeft_;
@@ -52,7 +44,7 @@ public:
 
 private:
 
-	vec2 RotatePoint(vec2 point, float angle);
+	glm::vec2 RotatePoint(glm::vec2 point, float angle);
 };
 
 class RenderBatch
@@ -74,34 +66,36 @@ public:
 class SpriteBatch
 {
 public:
-	SpriteBatch();
+	SpriteBatch() { }
 	~SpriteBatch() { }
 
 	void Begin(GlyphSort sortType = GlyphSort::TEXTURE);
 	void End();
+	void Init();
+	void CreateVertexArray();
 
 	void Draw(
-		const vec4& destRect, 
-		const vec4& uvRect, 
+		Rectangle& destRect,
+		Rectangle& uvRect,
 		GLuint textureID, 
 		float zLayer, 
-		const vec4& colour);
+		const glm::vec4& colour);
 
 	void Draw(
-		const vec4& destRect, 
-		const vec4& uvRect, 
+		Rectangle& destRect,
+		Rectangle& uvRect,
 		GLuint textureID, 
 		float zLayer, 
-		const vec4& colour, 
+		const glm::vec4& colour,
 		float angle);
 
 	void Draw(
-		const vec4& destRect, 
-		const vec4& uvRect, 
+		Rectangle& destRect,
+		Rectangle& uvRect,
 		GLuint textureID, 
 		float zLayer, 
-		const vec4& colour, 
-		const vec2& direction);
+		const glm::vec4& colour,
+		const glm::vec2& direction);
 
 	void Render();
 
@@ -114,7 +108,7 @@ private:
 	static bool CompareBackToFront(Glyph * a, Glyph * b);
 	static bool CompareTexture(Glyph * a, Glyph * b);
 
-	GLuint m_VBO[NUM_VBOS], m_VAO;
+	GLuint m_VBO, m_VAO;
 	GlyphSort m_sortType;
 
 	std::vector<Glyph> m_glyphs;

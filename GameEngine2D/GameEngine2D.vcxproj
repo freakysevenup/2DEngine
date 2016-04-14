@@ -57,7 +57,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>fmod_vc.lib;fmodL_vc.lib;glew32.lib;glew32s.lib;opengl32.lib;SDL2.lib;SDL2main.lib;CEGUIBase-0_d.lib;CEGUIOpenGLRenderer-0_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Box2D.lib;fmod_vc.lib;fmodL_vc.lib;glew32.lib;glew32s.lib;opengl32.lib;SDL2.lib;SDL2main.lib;CEGUIBase-0_d.lib;CEGUIOpenGLRenderer-0_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -75,7 +75,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>fmod_vc.lib;fmodL_vc.lib;glew32.lib;glew32s.lib;opengl32.lib;SDL2.lib;SDL2main.lib;CEGUIBase-0.lib;CEGUIOpenGLRenderer-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Box2D.lib;fmod_vc.lib;fmodL_vc.lib;glew32.lib;glew32s.lib;opengl32.lib;SDL2.lib;SDL2main.lib;CEGUIBase-0.lib;CEGUIOpenGLRenderer-0.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -91,12 +91,15 @@
     <ClCompile Include="Core\picoPNG.cpp" />
     <ClCompile Include="Core\Shader.cpp" />
     <ClCompile Include="Core\Sprite.cpp" />
+    <ClCompile Include="Core\SpriteAnimation.cpp" />
     <ClCompile Include="Core\SpriteBatch.cpp" />
+    <ClCompile Include="Core\TextureMap.cpp" />
     <ClCompile Include="Core\TextureResources.cpp" />
     <ClCompile Include="Core\CalculatedTime.cpp" />
     <ClCompile Include="Core\Utility.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="PlayerTest.cpp" />
     <ClCompile Include="TestGame.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -108,19 +111,24 @@
     <ClInclude Include="Core\IGame.h" />
     <ClInclude Include="Core\InputManager.h" />
     <ClInclude Include="Core\ISceneList.h" />
+    <ClInclude Include="Core\Rectangle.h" />
     <ClInclude Include="Core\SceneNode.h" />
     <ClInclude Include="Core\picoPNG.h" />
     <ClInclude Include="Core\Reference.h" />
     <ClInclude Include="Core\IScene.h" />
     <ClInclude Include="Core\Shader.h" />
     <ClInclude Include="Core\Sprite.h" />
+    <ClInclude Include="Core\SpriteAnimation.h" />
+    <ClInclude Include="Core\SpriteAtlas.h" />
     <ClInclude Include="Core\SpriteBatch.h" />
     <ClInclude Include="Core\Texture.h" />
+    <ClInclude Include="Core\TextureMap.h" />
     <ClInclude Include="Core\TextureResources.h" />
     <ClInclude Include="Core\CalculatedTime.h" />
     <ClInclude Include="Core\Utility.h" />
     <ClInclude Include="Core\Vertex.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="PlayerTest.h" />
     <ClInclude Include="TestGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -58,6 +58,13 @@
     <ClCompile Include="Core\CalculatedTime.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Core\SpriteAnimation.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTest.cpp" />
+    <ClCompile Include="Core\TextureMap.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestGame.h" />
@@ -120,6 +127,19 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Core\CalculatedTime.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SpriteAtlas.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SpriteAnimation.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Rectangle.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTest.h" />
+    <ClInclude Include="Core\TextureMap.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
