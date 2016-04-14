@@ -1,25 +1,30 @@
 #pragma once
-#include "Rendering\Display.h"
+#include <memory>
+#include "Core\IGame.h"
+#include "MainGame.h"
 
+enum GameState
+{
+	RUNNING,
+	PAUSED,
+	EXIT
+};
 
-class TestGame
+class TestGame : public IGame
 {
 public:
-	TestGame()
-	{
-		init();
-	}
 
-	~TestGame() {}
+	TestGame() :
+	m_mainGame(nullptr) {}
+	~TestGame() 
+	{}
 
-	void run();
+	virtual void OnInit() override;
+	virtual void AddScene() override;
+	virtual void OnExit() override;
 
 private:
 
-	void init();
-	void update();
-	void draw();
-
-	Display * m_window;
+	std::unique_ptr<MainGame> m_mainGame;
 };
 

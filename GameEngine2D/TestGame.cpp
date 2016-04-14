@@ -1,35 +1,20 @@
+#include ".\Core\ISceneList.h"
+
 #include "TestGame.h"
 
-
-void TestGame::run()
+void TestGame::OnInit()
 {
-	// set up 
-
-
-	// call update
-	update();
+	
 }
 
-void TestGame::init()
+void TestGame::AddScene()
 {
-	m_window = new Display("First Window", 500, 500, 0);
+	m_mainGame = std::make_unique<MainGame>(m_window);
+	m_sceneList->AddScene(m_mainGame.get());
+	m_sceneList->SetScene(m_mainGame->GetSceneIndex());
 }
 
-void TestGame::update()
+void TestGame::OnExit()
 {
-	// if game is running,
-	// refresh window, check input and call draw
-	while (true)
-	{
-		m_window->swapBuffers();
-		m_window->clearScreen(1.0f, 0.0f, 0.0f);
 
-		draw();
-	}
-}
-
-void TestGame::draw()
-{
-	// draw stuff
-	update();
 }

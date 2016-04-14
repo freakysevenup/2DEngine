@@ -1,0 +1,23 @@
+#define ToRadians(x) (float)(((x) * 3.1415926536f / 180.0f))
+#define ToDegree(x) (float)(((x) * 180.0f / 3.1415926536f))
+#define ZERO_MEM(a) memset(a,0,sizeof(a))
+#define ARRAY_SIZE(a) (sizeof(a)/sizeof(a[0]))
+#define ARRAY_SIZE_IN_ELEMENTS(a) (sizeof(a)/sizeof(a[0]))
+#define SAFE_DELETE(p) if(p) {delete p; p = NULL;}
+#define INVALID_VALUE 0xFFFFFFFF
+
+#include <vector>
+#include <string>
+#include <glm\glm.hpp>
+
+namespace Utility
+{
+	void sleep(int milliseconds);
+	std::vector<std::string> split(const std::string& s, char delim);
+	float getDistance(const glm::vec2& point1, const glm::vec2& point2);
+	float getMax(const glm::vec2& vec);
+	float getRandomNumber(float min = 0.0f, float max = 1.0f);
+	template<typename T> inline T clamp(const T &a, const T &min, const T &max);
+	bool readFileToBuffer(std::string filePath, std::vector<unsigned char>& buffer);
+	bool readFileToBuffer(std::string filePath, std::string & buffer);
+}

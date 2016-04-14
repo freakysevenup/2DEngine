@@ -1,6 +1,7 @@
 #include "InputManager.h"
-#include "..\Rendering\Display.h"
+#include "Display.h"
 #include <string>
+#include "ErrorLog.h"
 
 InputManager::InputManager(Display* window)
 	: m_window(window)
@@ -8,7 +9,7 @@ InputManager::InputManager(Display* window)
 	controller = SDL_GameControllerOpen(0);
 	if (controller == nullptr)
 	{
-
+		ErrorLog::GetInstance()->Log(ErrorLog::SeverityLevel::JADE_WARNING, "There is no controller connected to the device...");
 	}
 }
 
@@ -50,6 +51,8 @@ bool InputManager::Update(SDL_Event& _inputEvent)
 		switch (_inputEvent.type)
 		{
 		case SDL_QUIT:
+			SDL_Quit();
+			exit(0);
 			return true;
 		case SDL_KEYDOWN:
 			keyDownState = true;
@@ -185,7 +188,7 @@ const bool InputManager::MouseMoved() const
 	return mouseMoved;
 }
 
-const PxVec2 InputManager::GetMousePosition() const
+const glm::vec2 InputManager::GetMousePosition() const
 {
 	return mousePos;
 }
@@ -200,9 +203,9 @@ void InputManager::SetCursor(bool visible) const
 
 }
 
-void InputManager::SetMousePosition(const PxVec2& pos) const
+void InputManager::SetMousePosition(const glm::vec2& pos) const
 {
-	SDL_WarpMouseInWindow(m_window->getWindow(), (int)pos.x, (int)pos.y);
+	SDL_WarpMouseInWindow(m_window->GetWindow(), (int)pos.x, (int)pos.y);
 }
 
 const bool InputManager::PadButtonDown(Uint8 _button) const
@@ -238,7 +241,7 @@ const bool InputManager::ThumbLMoved() const
 	return thumbLMoved;
 }
 
-const PxVec2 InputManager::GetThumbLPosition() const
+const glm::vec2 InputManager::GetThumbLPosition() const
 {
 	return thumbLPos;
 }
@@ -248,7 +251,7 @@ const bool InputManager::ThumbRMoved() const
 	return thumbRMoved;
 }
 
-const PxVec2 InputManager::GetThumbRPosition() const
+const glm::vec2 InputManager::GetThumbRPosition() const
 {
 	return thumbRPos;
 }

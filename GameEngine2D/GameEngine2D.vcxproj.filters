@@ -8,9 +8,6 @@
     <Filter Include="Core">
       <UniqueIdentifier>{7c913999-8d0f-4729-be3e-5d135bf8140f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rendering">
-      <UniqueIdentifier>{1e741f3d-be5f-4ec8-8369-5501046ac7a9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TestGame.cpp" />
@@ -21,11 +18,52 @@
     <ClCompile Include="Core\InputManager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Time.cpp">
+    <ClCompile Include="Core\Utility.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Display.cpp">
-      <Filter>Rendering</Filter>
+    <ClCompile Include="Core\IGame.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ISceneList.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Core\FPSLimiter.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Camera.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Display.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\picoPNG.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\TextureResources.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\SceneNode.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Shader.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\SpriteBatch.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Sprite.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CalculatedTime.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\SpriteAnimation.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTest.cpp" />
+    <ClCompile Include="Core\TextureMap.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,11 +74,73 @@
     <ClInclude Include="Core\InputManager.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Time.h">
+    <ClInclude Include="Core\Reference.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Display.h">
-      <Filter>Rendering</Filter>
+    <ClInclude Include="Core\Utility.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IScene.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\IGame.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ISceneList.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Core\FPSLimiter.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Camera.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ColourRGB8.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Display.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\picoPNG.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Texture.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\TextureResources.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Vertex.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SceneNode.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Shader.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SpriteBatch.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Sprite.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CalculatedTime.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SpriteAtlas.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SpriteAnimation.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Rectangle.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTest.h" />
+    <ClInclude Include="Core\TextureMap.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
